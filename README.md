@@ -20,4 +20,3 @@ Current social trends coupled with the effects of the coronavirus pandemic have 
 
 
 To address these problems, we propose creating PlusOne, an application that automatically develops a fun and exciting recreational agenda for users based on their preferences to make going out with friends and family a simple, enjoyable and exciting experience. 
-***
