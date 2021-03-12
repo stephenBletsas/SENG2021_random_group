@@ -19,5 +19,4 @@ Thiagaut Valcke (z5282625)
 -> Having to meticulously organise an outing can make the outing itself less enjoyable and dissuade people from going out in the first place.
 
 
-
 To address these problems, we propose an application that automatically develops a fun and exciting recreational agenda for users based on their preferences to make going out with friends and family a simple, enjoyable and exciting experience. 
