@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/paths.dart';
 import '../widgets/path_card.dart';
+import '../providers/paths.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -19,6 +19,16 @@ class HomeScreen extends StatelessWidget {
         ),
         itemCount: paths.length,
         padding: const EdgeInsets.all(10.0),
+      ),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.green,
+        ),
+        child: IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {},
+        ),
       ),
     );
   }

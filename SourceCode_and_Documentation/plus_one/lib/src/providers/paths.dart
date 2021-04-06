@@ -60,4 +60,8 @@ class Paths with ChangeNotifier {
   List<Path> get paths {
     return [..._paths];
   }
+
+  Path findById(String id) {
+    return _paths.firstWhere((path) => path.id == id);
+  }
 }

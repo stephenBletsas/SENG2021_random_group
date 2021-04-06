@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/path.dart';
+import '../pages/view_path_screen.dart';
 
 class PathCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pathData = Provider.of<Path>(context, listen: false);
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          ViewPathScreen.routeName,
+          arguments: pathData.id,
+        );
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -63,12 +69,20 @@ class PathCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
+                            // decoration: BoxDecoration(
+                            //   borderRadius: BorderRadius.circular(15),
+                            //   color: Colors.black38,
+                            // ),
                             child: Icon(
                               Icons.calendar_today,
                               color: Colors.white,
                             ),
                           ),
                           Container(
+                            // decoration: BoxDecoration(
+                            //   borderRadius: BorderRadius.circular(15),
+                            //   // color: Colors.black38,
+                            // ),
                             width: 100,
                             // padding:
                             //     EdgeInsets.symmetric(vertical: 5, horizontal: 10),
