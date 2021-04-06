@@ -15,7 +15,6 @@ class HomeNavBarPage extends StatefulWidget {
 class _HomeNavBarPageState extends State<HomeNavBarPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-
     HomeScreen(),
     ChatListPage(),
     EventsPage(),
@@ -23,13 +22,11 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
     ProfilePage()
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: sixtyPercOrange,
-
         title: Center(
             child: Text(
           'PlusOne',
@@ -38,14 +35,12 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
         )),
       ),
       body: _children[_currentIndex],
-
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: unselectedGray,
         selectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home_outlined),
@@ -56,22 +51,19 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
             label: 'Chats',
           ),
           BottomNavigationBarItem(
-
               icon: Icon(Icons.calendar_today_outlined), label: 'Events'),
           BottomNavigationBarItem(
               icon: Icon(Icons.history_outlined), label: 'History'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_outlined), label: 'Profile'),
-
         ],
       ),
     );
   }
 
-
+  void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
-
 }
