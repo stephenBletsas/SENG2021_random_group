@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import './src/providers/events.dart';
 import './src/providers/paths.dart';
-import './src/pages/homescreen.dart';
+
 import './src/pages/authentication/loading_page.dart';
 
 void main() => runApp(MyApp());
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.orange,
         ),
         home: LoadingPage(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/pages/homescreen.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/home/home_page.dart';
@@ -14,28 +15,32 @@ class HomeNavBarPage extends StatefulWidget {
 class _HomeNavBarPageState extends State<HomeNavBarPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-   HomePage(),
-   ChatListPage(),
-   EventsPage(),
-   HistoryPage(),
-   ProfilePage()
- ];
-
+    HomeScreen(),
+    ChatListPage(),
+    EventsPage(),
+    HistoryPage(),
+    ProfilePage()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: sixtyPercOrange,
-        title: Center(child:Text('PlusOne', style: TextStyle(color : unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),)),
+        title: Center(
+            child: Text(
+          'PlusOne',
+          style: TextStyle(
+              color: unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),
+        )),
       ),
-      body: _children[_currentIndex], 
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: unselectedGray,
         selectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         onTap: onTabTapped,
-       currentIndex: _currentIndex,
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home_outlined),
@@ -46,26 +51,19 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
             label: 'Chats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_outlined),
-            label: 'Events'
-          ),
+              icon: Icon(Icons.calendar_today_outlined), label: 'Events'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history_outlined),
-            label: 'History'
-          ),
+              icon: Icon(Icons.history_outlined), label: 'History'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_outlined),
-            label: 'Profile'
-          ),
+              icon: Icon(Icons.person_outline_outlined), label: 'Profile'),
         ],
       ),
     );
   }
 
   void onTabTapped(int index) {
-   setState(() {
-     _currentIndex = index;
-   });
- }
-
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 }
