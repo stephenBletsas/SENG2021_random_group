@@ -21,7 +21,7 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         body: Center(
             child: SizedBox(
                 width: 240,

@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         body: Center(
             child: SizedBox(
                 width: 240,
