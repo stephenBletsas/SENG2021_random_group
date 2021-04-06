@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         body: Center(
             child: SizedBox(
                 width: 240,
@@ -48,7 +48,9 @@ class _LoginPageState extends State<LoginPage> {
                                 emailIDTextController, _obscureText, true),
                             buildTextField(context, "Password",
                                 passwordTextController, _obscureText, false),
-                            SizedBox(height: 5,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             // checkbox to show password
                             buildCheckBoxColumn(context, _obscureText, _onCheck,
                                 'Show password'),
@@ -111,9 +113,8 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Text(
                                       'Register',
                                       style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        decoration: TextDecoration.underline
-                                      ),
+                                          fontStyle: FontStyle.italic,
+                                          decoration: TextDecoration.underline),
                                     )),
                               ])),
                     ]))));
@@ -266,8 +267,6 @@ class _LoginPageState extends State<LoginPage> {
             )));
   }
 
-
-
   Widget buildFacebookSigninButton() {
     return Container(
         padding: const EdgeInsets.all(10.0),
@@ -281,10 +280,7 @@ class _LoginPageState extends State<LoginPage> {
             onTap: () {
               logIn();
             },
-            child: Image.asset(
-              'assets/images/facebook_icon2.png',
-              width: 50.0,
-              height: 50.0
-            )));
+            child: Image.asset('assets/images/facebook_icon2.png',
+                width: 50.0, height: 50.0)));
   }
 }

@@ -34,8 +34,6 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        // resizeToAvoidBottomPadding: false,
-        backgroundColor: snow,
         body: Center(
             child: SizedBox(
                 width: 240,

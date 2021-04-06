@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:plus_one/src/pages/loading_page.dart';
 import 'package:provider/provider.dart';
 
 import './src/providers/events.dart';
 import './src/providers/paths.dart';
 import './src/pages/homescreen.dart';
+import './src/pages/authentication/loading_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           accentColor: Colors.orange,
         ),
-        home: HomeScreen(),
+        home: LoadingPage(),
       ),
     );
   }

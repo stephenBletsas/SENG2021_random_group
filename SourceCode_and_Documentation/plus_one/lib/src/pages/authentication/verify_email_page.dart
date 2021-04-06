@@ -15,13 +15,14 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
   final _formKey = GlobalKey<FormState>();
 
   // Text controller to retrieve the current value of the TextField.
-  TextEditingController verificationCodeController = new TextEditingController();
+  TextEditingController verificationCodeController =
+      new TextEditingController();
 
   bool _obscureText = true;
 
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         body: Center(
             child: SizedBox(
                 width: 240,
@@ -37,9 +38,9 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
                           style: buildRobotoTextStyle(30.0, Colors.black),
                         ),
                       ),
-                      
+
                       SizedBox(height: 10),
-                      
+
                       Container(
                         alignment: Alignment.centerLeft,
                         margin: const EdgeInsets.only(bottom: 20.0),
@@ -48,17 +49,14 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
                           style: buildRobotoTextStyle(14.0, Colors.black),
                         ),
                       ),
-                      
+
                       SizedBox(height: 200),
 
-                      
-
                       Form(
-                          key: _formKey,
-                          child: 
-                            buildTextField(context, "Enter code",
-                                verificationCodeController, _obscureText, false),
-                          ),
+                        key: _formKey,
+                        child: buildTextField(context, "Enter code",
+                            verificationCodeController, _obscureText, false),
+                      ),
 
                       Container(
                         width: 120.0,
@@ -82,35 +80,33 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10,),
-                      Container(
-          padding: EdgeInsets.only(top: 0.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Didn\'t receive your code? ',
-                  style: buildRobotoTextStyle(14.0, Colors.black),
-                ),
-                SizedBox(height:2,),
-                InkWell(
-                    onTap: () {},
-                    child: Text(
-                      'Resend it',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        decoration:
-                        TextDecoration.underline,
-                        color: seafoamGreen,
+                      SizedBox(
+                        height: 10,
                       ),
-                    )),
-              ])),
-
-                      
-
-                      
-
-                       
+                      Container(
+                          padding: EdgeInsets.only(top: 0.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Didn\'t receive your code? ',
+                                  style:
+                                      buildRobotoTextStyle(14.0, Colors.black),
+                                ),
+                                SizedBox(
+                                  height: 2,
+                                ),
+                                InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      'Resend it',
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        decoration: TextDecoration.underline,
+                                        color: seafoamGreen,
+                                      ),
+                                    )),
+                              ])),
                     ]))));
   }
 
@@ -171,6 +167,4 @@ class _VerifyEmailState extends State<VerifyEmailPage> {
       style: buildRobotoTextStyle(14.0, Colors.black),
     );
   }
-
-  
 }
