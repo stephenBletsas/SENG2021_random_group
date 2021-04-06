@@ -1,6 +1,6 @@
-import 'package:plus_one/src/pages/styling/color_palettes.dart';
+import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:flutter/material.dart';
-import 'package:plus_one/src/pages/styling/custom_text_styles.dart';
+import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/utils/age_calculator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

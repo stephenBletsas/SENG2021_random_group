@@ -8,6 +8,8 @@ TextStyle buildLogoTextStyle(double fontSize) {
   ));
 }
 
+//alt font : notoSans
+
 TextStyle buildRobotoTextStyle(double fontSize, Color color) {
   return GoogleFonts.raleway(textStyle: TextStyle(
   fontSize: fontSize,
