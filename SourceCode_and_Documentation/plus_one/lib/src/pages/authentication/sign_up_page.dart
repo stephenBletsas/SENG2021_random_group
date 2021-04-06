@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           buildFacebookSigninButton(),
                         ],
                       ),
-
+                      
                       SizedBox(height: 25),
 
                       Row(children: <Widget>[
@@ -94,6 +94,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                       ),
+
+                      
+
+                      
+
+                       
                     ]))));
   }
 
@@ -202,14 +208,15 @@ class _SignUpPageState extends State<SignUpPage> {
       Container(
           alignment: Alignment.centerLeft,
           child: Theme(
-              data: ThemeData(
-                primaryColor: seafoamGreen,
-              ),
-              child: SizedBox(
-                  width: 240.0,
-                  height: 36.0,
-                  child: buildNameTextFormField(controller))))
-    ]);
+            data: ThemeData(
+              primaryColor: seafoamGreen,
+            ),
+            child: SizedBox(
+                width: 240.0,
+                height: 36.0,
+                child: buildNameTextFormField(controller)
+          ))
+    )]);
   }
 
   Widget buildNameTextFormField(TextEditingController controller) {
@@ -291,6 +298,8 @@ class _SignUpPageState extends State<SignUpPage> {
             )));
   }
 
+
+
   Widget buildFacebookSigninButton() {
     return Container(
         padding: const EdgeInsets.all(10.0),
@@ -304,7 +313,10 @@ class _SignUpPageState extends State<SignUpPage> {
             onTap: () {
               register();
             },
-            child: Image.asset('assets/images/facebook_icon2.png',
-                width: 50.0, height: 50.0)));
+            child: Image.asset(
+              'assets/images/facebook_icon2.png',
+              width: 50.0,
+              height: 50.0
+            )));
   }
 }
