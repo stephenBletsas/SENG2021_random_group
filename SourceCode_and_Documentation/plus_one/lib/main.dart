@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:plus_one/src/pages/loading_page.dart';
+import 'package:plus_one/src/pages/authentication/loading_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
       home: LoadingPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
