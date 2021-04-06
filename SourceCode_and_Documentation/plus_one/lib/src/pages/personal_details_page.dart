@@ -33,7 +33,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomPadding: false,
         backgroundColor: snow,
         body: Center(
             child: SizedBox(
