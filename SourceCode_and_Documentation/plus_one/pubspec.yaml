@@ -32,6 +32,7 @@ dependencies:
   fluttertoast: ^7.1.6
   intl: ^0.15.8
   flutter_webview_plugin: ^0.3.11
+  flutter_markdown: ^0.3.4
 
 
 
