@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plus_one/src/styling/custom_text_styles.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
-import 'package:plus_one/src/pages/authentication/login_page.dart';
-import 'package:plus_one/src/pages/profile/tos_page.dart';
 
 class NotifOptionsPage extends StatefulWidget {
   @override
@@ -10,12 +8,23 @@ class NotifOptionsPage extends StatefulWidget {
 }
 
 class _NotifOptionsState extends State<NotifOptionsPage> {
-  final textStyleState = TextStyle(fontSize: 11.0, color: Colors.white);
+  final textStyleState = GoogleFonts.raleway(
+      textStyle: TextStyle(
+    fontSize: 11.0,
+    color: Colors.white,
+  ));
 
-  final textStyleTop = TextStyle(
-      fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.white);
+  final textStyleTop = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      textStyle: TextStyle(
+        fontSize: 22.0,
+        color: Colors.white,
+      ));
 
-  final textStyle2 = TextStyle(color: Colors.white);
+  final textStyle2 = GoogleFonts.raleway(
+      textStyle: TextStyle(
+    color: Colors.white,
+  ));
 
   bool isPushOn = true;
   bool isTextOn = true;
