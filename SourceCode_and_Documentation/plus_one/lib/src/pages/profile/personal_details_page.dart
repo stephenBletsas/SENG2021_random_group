@@ -16,7 +16,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
 
   // Create a list of text controller and use it to retrieve the current value
   // of the TextField.
-  TextEditingController nameTextController = new TextEditingController();
+  TextEditingController nameTextController = new TextEditingController(text: "Faris Jalal");
   TextEditingController dobTextController = new TextEditingController();
 
   DateTime dobSelectedDate;
