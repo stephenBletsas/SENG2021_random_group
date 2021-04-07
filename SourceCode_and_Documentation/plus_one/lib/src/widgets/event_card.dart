@@ -15,6 +15,7 @@ class EventCard extends StatelessWidget {
   void _showFocusSheet(
     BuildContext ctx,
     String title,
+    String description,
   ) {
     showModalBottomSheet(
       context: ctx,
@@ -25,6 +26,7 @@ class EventCard extends StatelessWidget {
             onTap: () {},
             child: FocusSheet(
               title: title,
+              description: description,
             ),
             behavior: HitTestBehavior.opaque,
           ),
@@ -36,7 +38,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _showFocusSheet(context, event.title),
+      onTap: () => _showFocusSheet(context, event.title, event.description),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),

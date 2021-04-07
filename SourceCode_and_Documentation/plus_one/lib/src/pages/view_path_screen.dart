@@ -49,41 +49,6 @@ class ViewPathScreen extends StatelessWidget {
           )
         ],
       ),
-      // body: Column(
-      //   children: [
-      //     Container(
-      //       padding: EdgeInsets.all(10),
-      //       child: Text(
-      //         path.title,
-      //         style: TextStyle(fontSize: 30),
-      //         textAlign: TextAlign.center,
-      //       ),
-      //       width: double.infinity,
-      //     ),
-      //     Container(
-      //       child: Stack(
-      //         children: <Widget>[
-      //           ClipRRect(
-      //             borderRadius: BorderRadius.all(Radius.circular(15)),
-      //             child: Image.network(
-      //               path.image,
-      //               width: double.infinity,
-      //               fit: BoxFit.cover,
-      //               height: 200,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //     ListView.builder(
-      //       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-      //         value: path.events[i],
-      //         child: EventCard(),
-      //       ),
-      //       itemCount: path.events.length,
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
