@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/widgets/map_image.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/paths.dart';
@@ -13,17 +14,6 @@ class ViewPathScreen extends StatelessWidget {
     final path = Provider.of<Paths>(context, listen: false).findById(pathId);
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.orange,
-      //   title: Text(
-      //     "PlusOne",
-      //     style: TextStyle(
-      //       fontSize: 50,
-      //       fontStyle: FontStyle.italic,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      // ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -32,31 +22,13 @@ class ViewPathScreen extends StatelessWidget {
             // up the list of items.
             floating: true,
             backgroundColor: Colors.orange,
-
-            // Display a placeholder widget to visualize the shrinking size.
-            // flexibleSpace: Placeholder(),
-            // Make the initial height of the SliverAppBar larger than normal.
             expandedHeight: 20,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (ctx, i) {
                 if (i == 1) {
-                  return Container(
-                    child: Stack(
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.network(
-                            path.image,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            height: 200,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
+                  return MapImage();
                 } else if (i == 0) {
                   return Container(
                     padding: EdgeInsets.all(10),

@@ -87,7 +87,7 @@ class PathCard extends StatelessWidget {
                             // padding:
                             //     EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                             child: Text(
-                              "00/00/00",
+                              "01/04/21",
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
