@@ -31,7 +31,7 @@ dependencies:
   google_fonts: ^1.1.2
   fluttertoast: ^7.1.6
   intl: ^0.15.8
-  flutter_svg: ^0.21.0
+  flutter_webview_plugin: ^0.3.11
 
 
 

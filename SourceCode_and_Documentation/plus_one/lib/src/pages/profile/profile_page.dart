@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
+import 'package:plus_one/src/pages/profile/tos_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _ProfileState extends State<ProfilePage> {
                             image: AssetImage(
                                 "assets/images/prototype_icons/profile-colour.jpg"),
                             fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(50)),
                   ),
                   SizedBox(
                     width: 15,
@@ -295,11 +296,10 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
-              // TODO
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => AddProperty()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TOSPage()),
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(15),
