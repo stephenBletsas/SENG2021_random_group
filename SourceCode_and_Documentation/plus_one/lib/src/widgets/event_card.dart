@@ -12,30 +12,31 @@ class EventCard extends StatelessWidget {
     @required this.event,
   });
 
-  // void _showFocusSheet(
-  //     BuildContext ctx, String title, String description, String img) {
-  //   showModalBottomSheet(
-  //     context: ctx,
-  //     builder: (_) {
-  //       return Container(
-  //         height: 700,
-  //         child: GestureDetector(
-  //           onTap: () {},
-  //           child: FocusSheet(
-  //             focusStuff: moreStuff,
-  //             title: title,
-  //           ),
-  //           behavior: HitTestBehavior.opaque,
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
+  void _showFocusSheet(
+    BuildContext ctx,
+    String title,
+  ) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return Container(
+          height: 700,
+          child: GestureDetector(
+            onTap: () {},
+            child: FocusSheet(
+              title: title,
+            ),
+            behavior: HitTestBehavior.opaque,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => _showFocusSheet(context, event.title),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
