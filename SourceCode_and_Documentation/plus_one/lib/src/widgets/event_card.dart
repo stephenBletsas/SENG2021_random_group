@@ -4,12 +4,33 @@ import 'package:provider/provider.dart';
 
 import '../providers/events.dart';
 import '../providers/event.dart';
+import './focus_sheet.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
   EventCard({
     @required this.event,
   });
+
+  // void _showFocusSheet(
+  //     BuildContext ctx, String title, String description, String img) {
+  //   showModalBottomSheet(
+  //     context: ctx,
+  //     builder: (_) {
+  //       return Container(
+  //         height: 700,
+  //         child: GestureDetector(
+  //           onTap: () {},
+  //           child: FocusSheet(
+  //             focusStuff: moreStuff,
+  //             title: title,
+  //           ),
+  //           behavior: HitTestBehavior.opaque,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

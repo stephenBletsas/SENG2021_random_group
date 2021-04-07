@@ -34,8 +34,8 @@ class MapImage extends StatelessWidget {
                 children: [
                   Container(
                     width: 50,
-                    child: SvgPicture.asset(
-                      'assets/images/prototype_icons/sun.svg',
+                    child: Image.asset(
+                      'assets/images/prototype_icons/sun.png',
                       // semanticsLabel: 'Acme Logo',
                     ),
                   ),
