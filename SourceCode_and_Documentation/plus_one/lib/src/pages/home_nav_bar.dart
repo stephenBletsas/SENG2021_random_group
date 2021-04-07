@@ -27,12 +27,7 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: sixtyPercOrange,
-        title: Center(
-            child: Text(
-          'PlusOne',
-          style: TextStyle(
-              color: unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),
-        )),
+        title: Center(child: Text('PlusOne', style: buildLogoTextStyle(40))),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
