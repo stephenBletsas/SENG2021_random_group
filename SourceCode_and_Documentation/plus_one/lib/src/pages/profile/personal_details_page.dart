@@ -35,7 +35,33 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
     return Scaffold(
 
         resizeToAvoidBottomInset: false,
-
+        appBar: AppBar(
+        backgroundColor: sixtyPercOrange,
+        title: Center(
+            child: Text(
+          'PlusOne',
+          style: TextStyle(
+              color: unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),
+        )),
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: unselectedGray,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        actions: [
+          Icon(
+            Icons.call,
+            color: Colors.transparent,
+          ),
+          Icon(
+            Icons.call,
+            color: Colors.transparent,
+          )
+        ],
+      ),
         body: Center(
             child: SizedBox(
                 width: 240,
@@ -177,10 +203,10 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                   },
                   showCursor: true,
                   decoration: InputDecoration(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 10.0),
+        errorStyle: TextStyle(height: 0.5),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50.0))),
+                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
                     filled: true,
                     fillColor: Colors.grey[200].withOpacity(0.75),
                   ),
@@ -200,6 +226,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
           style: buildRobotoTextStyle(14.0, blackCoral),
         ),
       ),
+      SizedBox(height: 6),
       buildCheckBoxColumn(context, _valueMale, _onCheckMale, "Male"),
       buildCheckBoxColumn(context, _valueFemale, _onCheckFemale, "Female"),
       buildCheckBoxColumn(context, _valueOther, _onCheckOther, "Other")
@@ -210,7 +237,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
       BuildContext context, bool value, Function onChanged, String label) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 10.0),
+      margin: EdgeInsets.only(top: 4.0),
       child: Row(children: [
         Theme(
           data: ThemeData(unselectedWidgetColor: Colors.grey),

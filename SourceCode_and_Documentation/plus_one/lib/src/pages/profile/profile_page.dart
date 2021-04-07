@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/pages/profile/personal_details_page.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
 import 'package:plus_one/src/pages/profile/tos_page.dart';
 import 'package:plus_one/src/pages/profile/how_it_works.dart';
+import 'package:plus_one/src/pages/profile/payment_options_page.dart';
 import 'package:plus_one/src/pages/profile/notif_options_page.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -13,12 +15,23 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfileState extends State<ProfilePage> {
-  final textStyleState = TextStyle(fontSize: 11.0, color: Colors.white);
+  final textStyleState = GoogleFonts.raleway(
+      textStyle: TextStyle(
+    fontSize: 11.0,
+    color: Colors.white,
+  ));
 
-  final textStyleTop = TextStyle(
-      fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.white);
+  final textStyleTop = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      textStyle: TextStyle(
+        fontSize: 22.0,
+        color: Colors.white,
+      ));
 
-  final textStyle2 = TextStyle(color: Colors.white);
+  final textStyle2 = GoogleFonts.raleway(
+      textStyle: TextStyle(
+    color: Colors.white,
+  ));
 
   @override
   Widget build(BuildContext context) {
@@ -96,11 +109,10 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
-              // TODO
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => InfoPersonnel()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PersonalDetailsPage()),
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(15),
@@ -135,11 +147,10 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
-              // TODO
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => InfoPersonnel()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PaymentOptionsPage()),
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(15),
@@ -277,7 +288,7 @@ class _ProfileState extends State<ProfilePage> {
                     ),
                   ),
                   Icon(
-                    Icons.help_outline_rounded ,
+                    Icons.help_outline_rounded,
                   ),
                 ],
               ),
@@ -324,9 +335,7 @@ class _ProfileState extends State<ProfilePage> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Icon(
-                    Icons.history_edu_rounded
-                  ),
+                  Icon(Icons.history_edu_rounded),
                 ],
               ),
             ),
