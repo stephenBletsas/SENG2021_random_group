@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './event.dart';
-import './events.dart';
 import './path.dart';
 
 class Paths with ChangeNotifier {
@@ -31,7 +30,7 @@ class Paths with ChangeNotifier {
           title: 'Coogee Pavillion',
           description: "Nice Place ... lol",
           imageUrl:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSC4Yr9FAiZOa2jTalm5VyrVHVwnOnD19fDQ&usqp=CAU.jpg',
+              'https://s3-ap-southeast-2.amazonaws.com/production.assets.merivale.com.au/wp-content/uploads/2017/04/10153134/coogeepav_gallery3-11.jpg',
         ),
       ],
       image:

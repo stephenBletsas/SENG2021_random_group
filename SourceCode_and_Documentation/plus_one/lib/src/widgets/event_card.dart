@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/events.dart';
@@ -16,16 +17,18 @@ class EventCard extends StatelessWidget {
       onTap: () {},
       child: Card(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0),
-            side: BorderSide(color: Colors.black, width: 4)),
-        elevation: 5,
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(color: Colors.black, width: 2)),
+        elevation: 20,
         margin: EdgeInsets.all(15),
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Stack(
+              alignment: Alignment.center,
               children: <Widget>[
                 ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(0)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                   child: Image.network(
                     // pathData.image,
                     event.imageUrl,
@@ -34,72 +37,16 @@ class EventCard extends StatelessWidget {
                     height: 150,
                   ),
                 ),
-                // Positioned(
-                //   top: 10,
-                //   // bottom: 10,
-                //   left: 10,
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(15),
-                //       color: Colors.black38,
-                //     ),
-                //     width: 300,
-                //     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                //     child: Text(
-                //       event.title,
-                //       style: TextStyle(
-                //           fontSize: 25,
-                //           color: Colors.white,
-                //           fontStyle: FontStyle.italic),
-                //       softWrap: true,
-                //       overflow: TextOverflow.fade,
-                //       textAlign: TextAlign.center,
-                //     ),
-                //   ),
-                // ),
-                // Positioned(
-                //     // top: 10,
-                //     bottom: 10,
-                //     left: 10,
-                //     child: Container(
-                //       decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(15),
-                //         color: Colors.black38,
-                //       ),
-                //       child: Row(
-                //         children: [
-                //           Container(
-                //             // decoration: BoxDecoration(
-                //             //   borderRadius: BorderRadius.circular(15),
-                //             //   color: Colors.black38,
-                //             // ),
-                //             child: Icon(
-                //               Icons.calendar_today,
-                //               color: Colors.white,
-                //             ),
-                //           ),
-                //           Container(
-                //             // decoration: BoxDecoration(
-                //             //   borderRadius: BorderRadius.circular(15),
-                //             //   // color: Colors.black38,
-                //             // ),
-                //             width: 100,
-                //             // padding:
-                //             //     EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                //             child: Text(
-                //               "00/00/00",
-                //               style: TextStyle(
-                //                 fontSize: 20,
-                //                 color: Colors.white,
-                //               ),
-                //               softWrap: true,
-                //               overflow: TextOverflow.fade,
-                //               textAlign: TextAlign.center,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     )),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    event.title,
+                    style: buildLogoTextStyle(30),
+                    softWrap: true,
+                  ),
+                ),
               ],
             ),
           ],

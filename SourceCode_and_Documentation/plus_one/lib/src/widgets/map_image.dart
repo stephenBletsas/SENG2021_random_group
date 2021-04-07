@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class MapImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // @required
     return Container(
       child: Stack(
         children: <Widget>[
