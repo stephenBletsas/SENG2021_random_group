@@ -3,6 +3,8 @@ import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
 import 'package:plus_one/src/pages/profile/tos_page.dart';
+import 'package:plus_one/src/pages/profile/notif_options_page.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -170,7 +172,12 @@ class _ProfileState extends State<ProfilePage> {
           ),
           FlatButton(
             splashColor: Colors.grey,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotifOptionsPage()),
+              );
+            },
             child: Padding(
               padding: EdgeInsets.all(15),
               child: Row(
