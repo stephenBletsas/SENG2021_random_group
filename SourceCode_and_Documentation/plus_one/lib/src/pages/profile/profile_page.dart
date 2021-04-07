@@ -4,6 +4,7 @@ import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
 import 'package:plus_one/src/pages/profile/tos_page.dart';
 import 'package:plus_one/src/pages/profile/how_it_works.dart';
+import 'package:plus_one/src/pages/profile/payment_options_page.dart';
 import 'package:plus_one/src/pages/profile/notif_options_page.dart';
 
 
@@ -136,10 +137,10 @@ class _ProfileState extends State<ProfilePage> {
             splashColor: Colors.grey,
             onPressed: () {
               // TODO
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => InfoPersonnel()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PaymentOptionsPage()),
+              );
             },
             child: Padding(
               padding: EdgeInsets.all(15),
