@@ -33,7 +33,7 @@ dependencies:
   intl: ^0.15.8
   flutter_webview_plugin: ^0.3.11
   flutter_markdown: ^0.3.4
-  currency_pickers: ^1.0.6
+  # currency_pickers: ^1.0.6
 
 
 

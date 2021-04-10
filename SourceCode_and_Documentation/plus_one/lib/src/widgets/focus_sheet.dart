@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 
-class FocusSheet extends StatelessWidget {
+class FocusSheet extends StatefulWidget {
   final String title;
   final String description;
 
@@ -10,7 +11,36 @@ class FocusSheet extends StatelessWidget {
     @required this.description,
   });
 
-  final ScrollController _scrollController = ScrollController();
+  @override
+  _FocusSheetState createState() => _FocusSheetState(
+      // description: description,
+      // title: title,
+      );
+}
+
+class _FocusSheetState extends State<FocusSheet> {
+  // final String title;
+  // final String description;
+
+  // _FocusSheetState({
+  //   @required this.title,
+  //   @required this.description,
+  // });
+
+  int segmentedControlGroupValue = 0;
+  void changeState(value) {
+    if (segmentedControlGroupValue == 1) {
+      setState(() {
+        segmentedControlGroupValue = 0;
+      });
+    } else {
+      setState(() {
+        segmentedControlGroupValue = 1;
+      });
+    }
+    // segmentedControlGroupValue = value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +50,7 @@ class FocusSheet extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 5),
             child: Text(
-              title,
+              widget.title,
               style: buildBoldRobotoText(
                 40,
                 Colors.black,
@@ -31,67 +61,48 @@ class FocusSheet extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
+          segmentedControlGroupValue == 0
+              ? Container(
+                  height: 300,
+                  // width: 350,
+                  decoration: BoxDecoration(
+                    // color: Colors.orangeAccent,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: EdgeInsets.all(15),
+                  child: Text(
+                    widget.description,
+                    style: buildRobotoTextStyle(
+                      20,
+                      Colors.black,
+                    ),
+                    softWrap: true,
+                  ),
+                )
+              : Container(
+                  // width: 350,
+                  height: 300,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    child: Image.asset(
+                      'assets/images/prototype_icons/coogee map.PNG',
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      height: 300,
+                    ),
+                  ),
+                ),
           Container(
-            // color: Colors.blue,
-            height: 325,
-            // width: 400,
             padding: EdgeInsets.all(10),
-            child: Scrollbar(
-              // isAlwaysShown: true,
-              controller: _scrollController,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemBuilder: (ctx, i) => (i == 0)
-                    ? Container(
-                        width: 350,
-                        decoration: BoxDecoration(
-                          // color: Colors.orangeAccent,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: EdgeInsets.all(15),
-                        child: Text(
-                          description,
-                          style: buildRobotoTextStyle(
-                            20,
-                            Colors.black,
-                          ),
-                          // softWrap: true,
-                        ),
-                      )
-                    : Container(
-                        width: 350,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'assets/images/prototype_icons/coogee map.PNG',
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            height: 200,
-                          ),
-                        ),
-                      ),
-                itemCount: 2,
-                scrollDirection: Axis.horizontal,
-                // padding: EdgeInsets.all(10),
-              ),
-              thickness: 10,
+            child: CupertinoSlidingSegmentedControl(
+              groupValue: segmentedControlGroupValue,
+              children: <int, Widget>{
+                0: Text("Description"),
+                1: Text("Map"),
+              },
+              onValueChanged: changeState,
             ),
           ),
-
-          // Container(
-          //   decoration: BoxDecoration(
-          //     color: Colors.orangeAccent,
-          //     borderRadius: BorderRadius.circular(20),
-          //   ),
-          //   padding: EdgeInsets.all(15),
-          //   child: Text(
-          //     description,
-          //     style: buildRobotoTextStyle(
-          //       20,
-          //       Colors.black,
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
