@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapImage extends StatelessWidget {
+class MapImage extends StatefulWidget {
+  @override
+  _MapImageState createState() => _MapImageState();
+}
+
+class _MapImageState extends State<MapImage> {
+  GoogleMapController mapController;
+  final LatLng _center = const LatLng(-33.920365, 151.258279);
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     // @required
     return Container(
       child: Stack(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            child: Image.asset(
-              'assets/images/prototype_icons/coogee map.PNG',
-              width: double.infinity,
-              fit: BoxFit.cover,
-              height: 200,
+          Container(
+            height: 400,
+            width: 400,
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 15.0,
+              ),
             ),
           ),
           Positioned(
