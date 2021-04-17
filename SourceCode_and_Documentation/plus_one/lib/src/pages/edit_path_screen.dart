@@ -47,7 +47,7 @@ class EditPathScreen extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (ctx, i) {
                 if (i == 1) {
-                  return MapImage();
+                  return Text("MAP");
                 } else if (i == 0) {
                   return Container(
                     padding: EdgeInsets.all(10),

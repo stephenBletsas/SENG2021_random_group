@@ -6,11 +6,15 @@ class Event with ChangeNotifier {
   final String title;
   final String description;
   final String imageUrl;
+  final double lat;
+  final double long;
 
   Event({
     @required this.id,
     @required this.title,
     @required this.description,
     @required this.imageUrl,
+    this.lat,
+    this.long,
   });
 }

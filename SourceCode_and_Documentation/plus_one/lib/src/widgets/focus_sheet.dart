@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/providers/event.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
+import 'package:plus_one/src/widgets/location_preview.dart';
 
 class FocusSheet extends StatefulWidget {
   final String title;
   final String description;
+  final Event event;
 
   FocusSheet({
     @required this.title,
     @required this.description,
+    @required this.event,
   });
 
   @override
@@ -83,14 +87,10 @@ class _FocusSheetState extends State<FocusSheet> {
                   // width: 350,
                   height: 300,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: Image.asset(
-                      'assets/images/prototype_icons/coogee map.PNG',
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      height: 300,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      child: LocationPreview(
+                        event: widget.event,
+                      )),
                 ),
           Container(
             padding: EdgeInsets.all(10),

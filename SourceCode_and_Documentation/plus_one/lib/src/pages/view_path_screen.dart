@@ -15,7 +15,10 @@ class ViewPathScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pathId = ModalRoute.of(context).settings.arguments as String;
     final path = Provider.of<Paths>(context, listen: false).findById(pathId);
-
+    final List<Event> path_markers = [];
+    for (final event in path.events) {
+      path_markers.add(event);
+    }
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -48,7 +51,9 @@ class ViewPathScreen extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (ctx, i) {
                 if (i == 1) {
-                  return MapImage();
+                  return MapImage(
+                    eventLocs: path_markers,
+                  );
                 } else if (i == 0) {
                   return Container(
                     padding: EdgeInsets.all(10),

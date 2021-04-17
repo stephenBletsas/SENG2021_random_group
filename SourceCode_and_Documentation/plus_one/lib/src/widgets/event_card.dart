@@ -21,6 +21,7 @@ class _EventCardState extends State<EventCard> {
     BuildContext ctx,
     String title,
     String description,
+    Event event,
   ) {
     showModalBottomSheet(
       context: ctx,
@@ -30,6 +31,7 @@ class _EventCardState extends State<EventCard> {
           child: GestureDetector(
             onTap: () {},
             child: FocusSheet(
+              event: event,
               title: title,
               description: description,
             ),
@@ -44,7 +46,11 @@ class _EventCardState extends State<EventCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _showFocusSheet(
-          context, widget.event.title, widget.event.description),
+        context,
+        widget.event.title,
+        widget.event.description,
+        widget.event,
+      ),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
