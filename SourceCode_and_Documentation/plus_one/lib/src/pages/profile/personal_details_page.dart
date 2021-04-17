@@ -16,7 +16,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
 
   // Create a list of text controller and use it to retrieve the current value
   // of the TextField.
-  TextEditingController nameTextController = new TextEditingController();
+  TextEditingController nameTextController = new TextEditingController(text: "Faris Jalal");
   TextEditingController dobTextController = new TextEditingController();
 
   DateTime dobSelectedDate;
@@ -73,11 +73,21 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                         alignment: Alignment.centerLeft,
                         margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
                         child: Text(
-                          "ENTER YOUR DETAILS",
+                          "EDIT DETAILS",
                           style: buildRobotoTextStyle(28.0, blackCoral),
                         ),
                       ),
-
+                      SizedBox(height: 20,),
+Container(
+                    width: 140.0,
+                    height: 140.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images/prototype_icons/profile-colour.jpg"),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(100)),
+                  ),SizedBox(height: 20,),
                       Form(
                           key: _formKey,
                           child: Column(children: [
@@ -91,14 +101,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                               ),
                             )
                           ])),
-
+                      SizedBox(height: 20,),
                       // NEXT BUTTON
                       Container(
-                        width: 400.0,
+                        width: 100.0,
                         height: 48.0,
                         margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
                         child: RaisedButton(
-                          color: orange,
+                          color: seafoamGreen,
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50.0))),
@@ -110,8 +120,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                             }
                           },
                           child: Text(
-                            "NEXT",
-                            style: buildRobotoTextStyle(14.0, Colors.white),
+                            "SAVE",
+                            style: buildRobotoTextStyle(14.0, Colors.black),
                           ),
                         ),
                       ),
@@ -119,17 +129,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   }
 
   void next() {
-    if (!(_valueFemale || _valueMale || _valueOther) ||
-        (_valueFemale && _valueMale) ||
-        (_valueMale && _valueOther) ||
-        (_valueOther && _valueFemale)) {
-      return;
-    }
 
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => UploadPhotoPage(fromProfile: false,)),
-    // );
+    Navigator.pop(context);
   }
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -137,7 +138,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         builder: (context, child) {
           return Theme(
             data: ThemeData.light().copyWith(
-                colorScheme: ColorScheme.light(primary: orange),
+                colorScheme: ColorScheme.light(primary: sixtyPercOrange),
                 buttonTheme:
                     ButtonThemeData(textTheme: ButtonTextTheme.primary)),
             child: child,
@@ -187,7 +188,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
           alignment: Alignment.centerLeft,
           child: Theme(
             data: ThemeData(
-              primaryColor: orange,
+              primaryColor: seafoamGreen,
             ),
             child: SizedBox(
                 width: 240.0,
@@ -249,7 +250,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                 value: value,
                 onChanged: onChanged,
                 checkColor: Colors.white,
-                activeColor: orange,
+                activeColor: seafoamGreen,
               ),
             ),
 
