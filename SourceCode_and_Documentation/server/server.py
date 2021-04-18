@@ -38,10 +38,10 @@ def event():
     req = requests.get('')
 
     response = req.json()
-    for event in response["_embedded"]["events"]:
-        #for event2 in event["events"]:
-        our_events.append(event["name"])
-    return dumps(our_events)
+
+    temp_dict = {'temp': response["list"]["main"]["temp"],'description' : response["list"]["weather"]["description"]}
+
+    return dumps(temp_dict)
 
 
 if __name__ == "__main__":
