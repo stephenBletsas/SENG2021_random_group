@@ -32,11 +32,14 @@ def hello():
 @APP.route('/weather', methods=['GET'])
 def weather():
     dattime = 1619190000
-    lat = '-33.932999'
-    lon = '151.259003'
+    lat = -33.932999
+    lon = 151.259003
 
-    url = 'http://api.openweathermap.org/data/2.5/forecast?lat=-33.932999&lon=151.259003&appid=094385d28744303ab7695075f34baf94'
-    #request.format(lat,lon)
+    url = 'http://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&appid=094385d28744303ab7695075f34baf94'
+    url = url.format(lat,lon)
+
+    print(url)
+
     req = requests.get(url)
     response = req.json()
 
