@@ -60,14 +60,6 @@ APP.register_error_handler(Exception, defaultHandler)
 def hello():
     return "hello world"
 
-@APP.route('/events', methods=['GET'])
-def events():
-    apikey = "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0"
-    req = requests.get("https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey={apikey}")
-    return req
-    response = req.json()
-    return response
-
 @APP.route('/event', methods=['GET'])
 def event():
     req = requests.get("https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&startDateTime=2021-04-20T22:38:00Z&city=Sydney&countryCode=AU&stateCode=NSW")
@@ -81,14 +73,3 @@ def event():
 
 #if __name__ == "__main__":
 #    APP.run()
-
-
-
-
-
-
-
-
-
-
-#GET /v3/users/me HTTP 1.1 Host: www.eventbriteapi.com Authorization: Bearer WIMXDPIS3V2F74GY3G7V
