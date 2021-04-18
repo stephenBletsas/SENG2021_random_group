@@ -1,4 +1,5 @@
 import sys
+import json
 from json import dumps
 from flask import Flask, request, url_for
 from flask_cors import CORS
@@ -29,20 +30,26 @@ def hello():
     return "hello world"
 
 @APP.route('/weather', methods=['GET'])
-def event():
+def weather():
+    dattime = 1619190000
     lat = '-33.932999'
     lon = '151.259003'
 
-    request = 'api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&appid=094385d28744303ab7695075f34baf94'
-    request.format(lat,lon)
-    req = requests.get('')
-
+    url = 'http://api.openweathermap.org/data/2.5/forecast?lat=-33.932999&lon=151.259003&appid=094385d28744303ab7695075f34baf94'
+    #request.format(lat,lon)
+    req = requests.get(url)
     response = req.json()
 
-    temp_dict = {'temp': response["list"]["main"]["temp"],'description' : response["list"]["weather"]["description"]}
+    toReturn = list()
+    temp_dict = {'temp': '','description' : ''}
+    for elem in response["list"]:
+        if elem['dt'] == dattime:   
+            temp_dict['temp'] = elem['main']['temp']
+            x = elem['weather'][0]
+            temp_dict['description'] = x['description']
 
     return dumps(temp_dict)
 
 
-if __name__ == "__main__":
-   APP.run()
+# if __name__ == "__main__":
+#    APP.run()
