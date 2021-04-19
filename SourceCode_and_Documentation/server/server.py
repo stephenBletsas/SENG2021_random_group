@@ -48,14 +48,19 @@ def event():
 @APP.route('/restaurant', methods=['GET'])
 def restaurant():
     
-    headers = {"Authorization": "Bearer ogcfnTUH24f20GImeBgHY7r90WNlgPEQrQTIHXSKhq9L-nj1-nBvosyAyoJ9eLingqAqjd1tC8lJs0rzyESrzii4GLK2IrkrzpJZZdAWxFywUB98HzPWQ51hQlZ9YHYx"}
-    url = 'https://api.yelp.com/v3/businesses/search?location=sydney&term=restaurant'
+    lat = float(request.args.get('latitude'))
+    lon = float(request.args.get('longtitude'))
+    radius = '5000'
 
+    headers = {"Authorization": "Bearer ogcfnTUH24f20GImeBgHY7r90WNlgPEQrQTIHXSKhq9L-nj1-nBvosyAyoJ9eLingqAqjd1tC8lJs0rzyESrzii4GLK2IrkrzpJZZdAWxFywUB98HzPWQ51hQlZ9YHYx"}
+    url = 'https://api.yelp.com/v3/businesses/search?latitude={}&longitude={}&radius={}&term=restaurant&limit=50'.format(lat,lon,radius)
+    print(url)
     req = requests.get(url,headers=headers)
     response = req.json()
     
     temp_dict = {'name': '','image_url' : '','rating': '','latitude':'','longitude': ''}
     toReturn = list()
+    count = 0
     for x in response['businesses']:
         temp_dict = {'name': '','image_url' : '','rating': '','latitude':'','longitude': ''}
         temp_dict['name'] = x['name']
@@ -65,6 +70,7 @@ def restaurant():
         temp_dict['longitude'] = x['coordinates']['longitude']
 
         toReturn.append(temp_dict)
+        count = count + 1
 
     return dumps(toReturn)
 
