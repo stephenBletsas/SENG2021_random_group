@@ -1,12 +1,10 @@
 import 'package:plus_one/src/styling/custom_text_styles.dart';
-import 'package:plus_one/src/widgets/report_modal.dart';
 import 'package:plus_one/src/pages/chats/chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
-import 'package:plus_one/src/widgets/modal.dart';
 
 List<ChatData> listContact = [ ChatData(name : 'Hermione Granger', imagePath : "assets/images/prototype_icons/profile-colour.jpg" ,lastMessage:"Hi John there is..."),
  ChatData(name : 'Harry Potter', imagePath : "assets/images/prototype_icons/profile-colour.jpg" ,lastMessage:"Yo we should check..."),
@@ -83,7 +81,7 @@ class _ChatListPageState extends State<ChatListPage>{
           icon: Icons.report,
           color: Colors.red,
           caption: "Report",
-          onTap: () => ReportModal().buildPopUp(context),
+          onTap: () => {},
         )
       ],
     );
