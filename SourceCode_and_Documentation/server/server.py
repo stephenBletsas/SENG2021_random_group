@@ -25,20 +25,16 @@ APP.config['TRAP_HTTP_EXCEPTIONS'] = True
 APP.register_error_handler(Exception, defaultHandler)
 
 
-@APP.route('/hello', methods=['GET'])
-def hello():
-    return "hello world"
-
 @APP.route('/weather', methods=['GET'])
 def weather():
-    dattime = 1619190000
-    lat = -33.932999
-    lon = 151.259003
+    # dattime = 1619190000
+    dattime = request.args.get('datetime')
+    lat = float(request.args.get('latitude'))
+    lon = float(request.args.get('longtitude')
 
     url = 'http://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&appid=094385d28744303ab7695075f34baf94'
     url = url.format(lat,lon)
 
-    print(url)
 
     req = requests.get(url)
     response = req.json()
