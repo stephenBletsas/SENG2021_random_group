@@ -16,7 +16,8 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
 
   // Create a list of text controller and use it to retrieve the current value
   // of the TextField.
-  TextEditingController nameTextController = new TextEditingController(text: "Faris Jalal");
+  TextEditingController nameTextController =
+      new TextEditingController(text: "Faris Jalal");
   TextEditingController dobTextController = new TextEditingController();
 
   DateTime dobSelectedDate;
@@ -33,35 +34,36 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-        backgroundColor: sixtyPercOrange,
-        title: Center(
-            child: Text(
-          'PlusOne',
-          style: TextStyle(
-              color: unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),
-        )),
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: unselectedGray,
+          backgroundColor: sixtyPercOrange,
+          title: Center(
+              child: Text(
+            'PlusOne',
+            style: TextStyle(
+                color: unselectedGray,
+                fontWeight: FontWeight.bold,
+                fontSize: 25),
+          )),
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: unselectedGray,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+          actions: [
+            Icon(
+              Icons.call,
+              color: Colors.transparent,
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        actions: [
-          Icon(
-            Icons.call,
-            color: Colors.transparent,
-          ),
-          Icon(
-            Icons.call,
-            color: Colors.transparent,
-          )
-        ],
-      ),
+            Icon(
+              Icons.call,
+              color: Colors.transparent,
+            )
+          ],
+        ),
         body: Center(
             child: SizedBox(
                 width: 240,
@@ -77,17 +79,22 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                           style: buildRobotoTextStyle(28.0, blackCoral),
                         ),
                       ),
-                      SizedBox(height: 20,),
-Container(
-                    width: 140.0,
-                    height: 140.0,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/prototype_icons/profile-colour.jpg"),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(100)),
-                  ),SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: 140.0,
+                        height: 140.0,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/images/prototype_icons/profile-colour.jpg"),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(100)),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Form(
                           key: _formKey,
                           child: Column(children: [
@@ -101,7 +108,9 @@ Container(
                               ),
                             )
                           ])),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       // NEXT BUTTON
                       Container(
                         width: 100.0,
@@ -129,7 +138,6 @@ Container(
   }
 
   void next() {
-
     Navigator.pop(context);
   }
 
@@ -204,8 +212,9 @@ Container(
                   },
                   showCursor: true,
                   decoration: InputDecoration(
-        errorStyle: TextStyle(height: 0.5),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    errorStyle: TextStyle(height: 0.5),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 10.0),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5.0))),
                     filled: true,
