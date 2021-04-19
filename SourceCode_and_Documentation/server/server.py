@@ -27,7 +27,6 @@ APP.register_error_handler(Exception, defaultHandler)
 @APP.route('/event', methods=['GET'])
 def event():
     data = request.args.get('datetime')
-    #datetime format 2021-04-20T22:38:00Z
     data2 = f'{data[:4]}-{data[5:7]}-{data[8:10]}T23:59:59Z'
     req = requests.get(f'https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&startDateTime={data}&endDateTime={data2}&city=Sydney&countryCode=AU&stateCode=NSW')
     response = req.json()
