@@ -8,6 +8,7 @@ class Paths with ChangeNotifier {
       id: 'P1',
       title: 'A Day At The Beach!',
       description: 'A Pleasant Day At The Beach With Your Friends!!',
+      dateTime: DateTime(2021, 4, 21, 9, 30),
       events: [
         Event(
           id: 'E1',
@@ -42,24 +43,6 @@ class Paths with ChangeNotifier {
       image:
           "https://coogeebeach.crowneplaza.com/wp-content/uploads/2020/09/Ocean-Front-View-Coogee-Beach.jpg",
     ),
-    // Path(
-    //     id: 'P2',
-    //     title: 'Blue Mountains',
-    //     description: 'Exploring the Blue Mountains',
-    //     events: [
-    //       Event(
-    //         id: 'E4',
-    //         title: title,
-    //         description: description,
-    //         imageUrl: imageUrl,
-    //       )
-    //     ]),
-    // Path(
-    //   id: 'P3',
-    //   title: title,
-    //   description: description,
-    //   events: events,
-    // ),
   ];
 
   List<Path> get paths {
@@ -68,5 +51,10 @@ class Paths with ChangeNotifier {
 
   Path findById(String id) {
     return _paths.firstWhere((path) => path.id == id);
+  }
+
+  void addPath(Path newPath) {
+    _paths.add(newPath);
+    notifyListeners();
   }
 }

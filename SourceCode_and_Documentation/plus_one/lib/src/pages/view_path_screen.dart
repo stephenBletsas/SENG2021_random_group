@@ -14,7 +14,7 @@ class ViewPathScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pathId = ModalRoute.of(context).settings.arguments as String;
-    final path = Provider.of<Paths>(context, listen: false).findById(pathId);
+    final path = Provider.of<Paths>(context, listen: true).findById(pathId);
     final List<Event> path_markers = [];
     for (final event in path.events) {
       path_markers.add(event);

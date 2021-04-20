@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/pages/create_path_screen_dt.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/path_card.dart';
@@ -7,7 +8,7 @@ import '../providers/paths.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final pathsData = Provider.of<Paths>(context);
+    final pathsData = Provider.of<Paths>(context, listen: true);
     final paths = pathsData.paths;
 
     final deviceSize = MediaQuery.of(context).size;
@@ -27,7 +28,8 @@ class HomeScreen extends StatelessWidget {
         ),
         child: IconButton(
           icon: Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () =>
+              Navigator.of(context).pushNamed(CreatePath.routeName),
         ),
       ),
     );

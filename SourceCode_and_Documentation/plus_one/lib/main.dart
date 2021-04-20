@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/pages/create_path_screen_dt.dart';
 import 'package:provider/provider.dart';
 
 import './src/providers/events.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           ViewPathScreen.routeName: (ctx) => ViewPathScreen(),
           EditPathScreen.routeName: (ctx) => EditPathScreen(),
+          CreatePath.routeName: (ctx) => CreatePath(),
         },
         debugShowCheckedModeBanner: false,
       ),

@@ -35,10 +35,11 @@ class EditPathScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(
-                    ViewPathScreen.routeName,
-                    arguments: pathId,
-                  );
+                  Navigator.of(context).pop();
+                  // popNamed(
+                  //   ViewPathScreen.routeName,
+                  //   arguments: pathId,
+                  // );
                 },
               )
             ],
