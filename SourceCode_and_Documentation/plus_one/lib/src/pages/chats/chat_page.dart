@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-
-//  flutter_webview_plugin: ^0.3.11
 
 
-class AboutUsPage extends StatefulWidget {
+class ChatPage extends StatefulWidget {
   @override
-  _AboutUsPageState createState() => _AboutUsPageState();
+  _ChatPageState createState() => _ChatPageState();
 }
 
-class _AboutUsPageState extends State<AboutUsPage> {
+class _ChatPageState extends State<ChatPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,22 +38,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
           )
         ],
       ),
-      body: FutureBuilder(
-          future: rootBundle.loadString("assets/README.md"),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (snapshot.hasData) {
-              return Markdown(
-                data: snapshot.data,
-                styleSheet: MarkdownStyleSheet(
-                  h1: TextStyle(color: persianGreen, fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              );
-            }
-
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
-    );
+      body: Text("CHAT PAGE"),
+      );
   }
 }
