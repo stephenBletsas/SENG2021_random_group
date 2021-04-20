@@ -48,7 +48,7 @@ class _MapImageState extends State<MapImage> {
                   widget.eventLocs[0].lat,
                   widget.eventLocs[0].long,
                 ),
-                zoom: 16.0,
+                zoom: 13.0,
               ),
               markers: _markers.values.toSet(),
             ),

@@ -176,7 +176,8 @@ class _CreatePathState extends State<CreatePath> {
             icon: Icon(Icons.done),
             onPressed: () async {
               Path newPath = await Provider.of<Paths>(context, listen: false)
-                  .addPath(_theme);
+                  .addPath(_theme, _date, _time);
+              print("Hello");
 
               Navigator.of(context).pushReplacementNamed(
                   ViewPathScreen.routeName,

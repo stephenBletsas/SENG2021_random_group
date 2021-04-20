@@ -58,28 +58,45 @@ class Paths with ChangeNotifier {
     return _paths.firstWhere((path) => path.id == id);
   }
 
-  Future<Path> addPath(String theme) async {
+  Future<Path> addPath(String theme, DateTime date, DateTime time) async {
+    Path newPath;
     final url = "http://0.0.0.0:5000/create-path?theme=$theme";
     try {
       final response = await http.get(url);
-      final payload = json.decode(response.body);
+
+      final p = json.decode(response.body);
+      print(p);
       List<Event> _events = [];
 
-      for (Map e in payload['events']) {
+      for (Map e in p['events']) {
         Event newEvent = Event(
-            id: e['id'],
-            title: e['title'],
-            description: e['description'],
-            imageUrl: e['imageUrl']);
+          id: e['id'],
+          title: e['title'],
+          description: e['description'],
+          imageUrl: e['imageUrl'],
+          lat: e['lat'],
+          long: e['long'],
+        );
+        _events.add(newEvent);
       }
+      DateTime dt =
+          DateTime(date.year, date.month, date.day, time.hour, time.minute);
 
-      Path newPath = Path();
-    } catch (error) {}
-    _paths.add(newPath);
-    notifyListeners();
-  }
+      newPath = Path(
+        events: _events,
+        id: p['id'],
+        description: p['description'],
+        title: p['title'],
+        image: p['image'],
+        dateTime: dt,
+      );
+      _paths.add(newPath);
+      notifyListeners();
+    } catch (error) {
+      print("you are getting an error");
+      print(error);
+    }
 
-  void getPath(String title) {
-    final url = 'http://0.0.0.0:5000/get-path?';
+    return newPath;
   }
 }

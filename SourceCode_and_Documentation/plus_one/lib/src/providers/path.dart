@@ -15,6 +15,6 @@ class Path with ChangeNotifier {
     @required this.description,
     @required this.events,
     @required this.image,
-    this.dateTime,
+    @required this.dateTime,
   });
 }

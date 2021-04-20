@@ -14,7 +14,7 @@ class Event with ChangeNotifier {
     @required this.title,
     @required this.description,
     @required this.imageUrl,
-    this.lat,
-    this.long,
+    @required this.lat,
+    @required this.long,
   });
 }
