@@ -27,7 +27,9 @@ APP.register_error_handler(Exception, defaultHandler)
 @APP.route('/event', methods=['GET'])
 def event():
     data = request.args.get('datetime')
+    print(data)
     data2 = f'{data[:4]}-{data[5:7]}-{data[8:10]}T23:59:59Z'
+    print(f'{data}    ||    {data2}')
     req = requests.get(f'https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&startDateTime={data}&endDateTime={data2}&city=Sydney&countryCode=AU&stateCode=NSW')
     response = req.json()
     our_events = []
@@ -35,7 +37,8 @@ def event():
         for event in response["_embedded"]["events"]:
             my_dict = dict()
             my_dict['name'] = event["name"]
-            my_dict['location'] = event["_embedded"]["venues"][0]["name"]
+            my_dict['lat'] = event["_embedded"]["venues"][0]["location"]["latitude"]
+            my_dict['long'] = event["_embedded"]["venues"][0]["location"]["longitude"]
             my_dict['image'] = event["images"][0]["url"]
             my_dict['datetime'] = event["dates"]["start"]["dateTime"]
             my_dict['description'] = event["info"]
@@ -48,8 +51,8 @@ def event():
 @APP.route('/restaurant', methods=['GET'])
 def restaurant():
     
-    lat = float(request.args.get('latitude'))
-    lon = float(request.args.get('longtitude'))
+    lat = float(request.args.get('lat'))
+    lon = float(request.args.get('long'))
     radius = '5000'
 
     headers = {"Authorization": "Bearer ogcfnTUH24f20GImeBgHY7r90WNlgPEQrQTIHXSKhq9L-nj1-nBvosyAyoJ9eLingqAqjd1tC8lJs0rzyESrzii4GLK2IrkrzpJZZdAWxFywUB98HzPWQ51hQlZ9YHYx"}
@@ -77,9 +80,11 @@ def restaurant():
 
 @APP.route('/weather', methods=['GET'])
 def weather():
-    dattime = request.args.get('datetime')
-    lat = float(request.args.get('latitude'))
-    lon = float(request.args.get('longtitude'))
+    dattime = int(request.args.get('datetime'))
+    #20210424
+    lat = float(request.args.get('lat'))
+    lon = float(request.args.get('long'))
+    
 
     url = 'http://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&appid=094385d28744303ab7695075f34baf94'.format(lat,lon)
 
@@ -90,7 +95,7 @@ def weather():
     toReturn = list()
     temp_dict = {'temp': '','description' : ''}
     for elem in response["list"]:
-        if elem['dt'] == dattime:   
+        if int(elem['dt']) > dattime-10800 and int(elem['dt']) < dattime+10800:   
             temp_dict['temp'] = int(float(elem['main']['temp']) - 274.15)
             x = elem['weather'][0]
             temp_dict['description'] = x['description']
@@ -98,5 +103,5 @@ def weather():
     return dumps(temp_dict)
 
 
-# if __name__ == "__main__":
-#    APP.run()
+if __name__ == "__main__":
+   APP.run(host='0.0.0.0', port=5000)
