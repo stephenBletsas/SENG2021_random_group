@@ -4,6 +4,7 @@ import 'package:plus_one/src/pages/view_path_screen.dart';
 import 'package:plus_one/src/providers/path.dart';
 import 'package:plus_one/src/providers/paths.dart';
 import 'package:provider/provider.dart';
+import '../providers/paths.dart';
 import '../styling/color_palettes.dart';
 import '../styling/custom_text_styles.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class _CreatePathState extends State<CreatePath> {
   final DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
   final DateFormat timeFormatter = DateFormat('Hms');
   final _formKey = GlobalKey<FormState>();
-  final String theme = "";
+  String _theme = "";
 
   TextEditingController title = new TextEditingController();
   TextEditingController description = new TextEditingController();
@@ -65,7 +66,25 @@ class _CreatePathState extends State<CreatePath> {
           ),
           Container(
             child: Column(
-              children: [],
+              children: [
+                Text("THEMES"),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _theme = "CITY";
+                    });
+                  },
+                  child: Text("CITY"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _theme = "TOURIST ATTRACTION";
+                    });
+                  },
+                  child: Text("TOURIST ATTRACTION"),
+                ),
+              ],
             ),
           ),
 
@@ -155,15 +174,10 @@ class _CreatePathState extends State<CreatePath> {
         ),
         child: IconButton(
             icon: Icon(Icons.done),
-            onPressed: () {
-              Path newPath = Path(
-                id: 'P${_date.toString()}',
-                title: title.text,
-                description: "Description",
-                events: [],
-                image: '',
-              );
-              pathsList.addPath(newPath);
+            onPressed: () async {
+              Path newPath = await Provider.of<Paths>(context, listen: false)
+                  .addPath(_theme);
+
               Navigator.of(context).pushReplacementNamed(
                   ViewPathScreen.routeName,
                   arguments: newPath.id);

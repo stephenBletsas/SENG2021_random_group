@@ -102,6 +102,50 @@ def weather():
 
     return dumps(temp_dict)
 
+@APP.route('/create-path', methods=['GET'])
+def get_path():
+    theme = request.args.get('theme')
+    path = {
+      'id': 'P2',
+      'title': 'A Nice Evening Out!',
+      'description': 'A Wonderful Dinner With Club Experience!!',
+      'events': [
+        {
+          'id': 'E4',
+          'title': 'Bel And Brio',
+          'description':
+              "Bel & Brio is a modern-day establishment showcasing eco-elegance and a luxuriously captivating ambience and seasonal Italian food and wine offerings, creating an exceptional and enchanting customer experience.",
+          'imageUrl':
+              'https://res.cloudinary.com/tf-lab/image/upload/w_600,h_337,c_fill,g_auto:subject,q_auto,f_auto/restaurant/777331f9-a4e3-4bc2-81b0-af8e576eac1e/17f377f4-88ba-4f87-adc4-fd21b366e89d.jpg',
+          'lat': -33.865356,
+          'long': 151.201862,
+        },
+        {
+          'id': 'E5',
+          'title': 'Little Felix Bar',
+          'description':
+              "Tucked alongside Felix Restaurant in Ash Street, you’ll find Little Felix – a French-style cocktail bar with a moody interior and bartenders who know exactly how you like your drink.",
+          'imageUrl':
+              'https://s3-ap-southeast-2.amazonaws.com/production.assets.merivale.com.au/wp-content/uploads/2019/11/01095321/Little_Felix_VenuePageTile_640x416px.jpg',
+          'lat': -33.866461,
+          'long': 151.207743
+        },
+        {
+          'id': 'E3',
+          'title': 'Ivy Night Club',
+          'description': "Dance the night away at ivy pool club in the heart of the CBD. Home to Sydney's best parties, featuring live music, DJs, exceptional entertainment & more.",
+          'imageUrl':
+              'https://musicfeeds.com.au/assets/uploads/ea15d52f2a47e5a4b37c8ba11528486c.jpg',
+          'lat': -33.865899,
+          'long': 151.207715,
+        }
+      ],
+      'image':
+          "https://res.cloudinary.com/tf-lab/image/upload/w_600,h_337,c_fill,g_auto:subject,q_auto,f_auto/restaurant/777331f9-a4e3-4bc2-81b0-af8e576eac1e/17f377f4-88ba-4f87-adc4-fd21b366e89d.jpg",
+    }
+    return dumps(path)
+
+
 
 if __name__ == "__main__":
    APP.run(host='0.0.0.0', port=5000)

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import './event.dart';
 import './path.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'event.dart';
+import 'event.dart';
 
 class Paths with ChangeNotifier {
   List<Path> _paths = [
@@ -53,7 +58,23 @@ class Paths with ChangeNotifier {
     return _paths.firstWhere((path) => path.id == id);
   }
 
-  void addPath(Path newPath) {
+  Future<Path> addPath(String theme) async {
+    final url = "http://0.0.0.0:5000/create-path?theme=$theme";
+    try {
+      final response = await http.get(url);
+      final payload = json.decode(response.body);
+      List<Event> _events = [];
+
+      for (Map e in payload['events']) {
+        Event newEvent = Event(
+            id: e['id'],
+            title: e['title'],
+            description: e['description'],
+            imageUrl: e['imageUrl']);
+      }
+
+      Path newPath = Path();
+    } catch (error) {}
     _paths.add(newPath);
     notifyListeners();
   }
