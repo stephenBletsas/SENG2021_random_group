@@ -21,6 +21,7 @@ class _CreatePathState extends State<CreatePath> {
   final DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
   final DateFormat timeFormatter = DateFormat('Hms');
   final _formKey = GlobalKey<FormState>();
+  final String theme = "";
 
   TextEditingController title = new TextEditingController();
   TextEditingController description = new TextEditingController();
@@ -63,19 +64,25 @@ class _CreatePathState extends State<CreatePath> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(15),
-            width: double.infinity,
-            // height: MediaQuery.of(context).copyWith().size.height / 5,
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  buildTextField(context, "TITLE", title),
-                  buildTextField(context, "DESCRIPTION", description),
-                ],
-              ),
+            child: Column(
+              children: [],
             ),
           ),
+
+          // Container(
+          //   padding: EdgeInsets.all(15),
+          //   width: double.infinity,
+          //   // height: MediaQuery.of(context).copyWith().size.height / 5,
+          //   child: Form(
+          //     key: _formKey,
+          //     child: Column(
+          //       children: [
+          //         buildTextField(context, "TITLE", title),
+          //         buildTextField(context, "DESCRIPTION", description),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: 20,
           ),
