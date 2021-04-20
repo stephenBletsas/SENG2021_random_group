@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../styling/color_palettes.dart';
 import '../styling/custom_text_styles.dart';
 import 'package:intl/intl.dart';
+import 'dart:io' show Platform;
 
 class CreatePath extends StatefulWidget {
   static const routeName = '/create-path';
@@ -23,6 +24,20 @@ class _CreatePathState extends State<CreatePath> {
 
   TextEditingController title = new TextEditingController();
   TextEditingController description = new TextEditingController();
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: _date, // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != _date)
+      setState(() {
+        _date = picked;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     final pathsList = Provider.of<Paths>(context, listen: false);
@@ -64,28 +79,35 @@ class _CreatePathState extends State<CreatePath> {
           SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext builder) {
-                    return Container(
-                      height: MediaQuery.of(context).copyWith().size.height / 3,
-                      child: CupertinoDatePicker(
-                        initialDateTime: DateTime.now(),
-                        onDateTimeChanged: (DateTime newdate) {
-                          setState(() {
-                            _date = newdate;
-                          });
-                        },
-                        mode: CupertinoDatePickerMode.date,
-                      ),
-                    );
-                    // Navigator.of(context).popUntil((route) => false)
-                  });
-            },
-            child: Text('SELECT DATE'),
-          ),
+          Platform.isAndroid
+              ? ElevatedButton(
+                  onPressed: () => _selectDate(context),
+                  child: Text('SELECT DATE'),
+                )
+              : ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext builder) {
+                          return Container(
+                            height:
+                                MediaQuery.of(context).copyWith().size.height /
+                                    3,
+                            child: CupertinoDatePicker(
+                              initialDateTime: DateTime.now(),
+                              onDateTimeChanged: (DateTime newdate) {
+                                setState(() {
+                                  _date = newdate;
+                                });
+                              },
+                              mode: CupertinoDatePickerMode.date,
+                            ),
+                          );
+                          // Navigator.of(context).popUntil((route) => false)
+                        });
+                  },
+                  child: Text('SELECT DATE'),
+                ),
           SizedBox(height: 10),
           Text(
             'Selected Date: ${dateFormatter.format(_date)}',
