@@ -7,6 +7,7 @@ class Path with ChangeNotifier {
   final String description;
   final String image;
   final List<Event> events;
+  final DateTime dateTime;
 
   Path({
     @required this.id,
@@ -14,5 +15,6 @@ class Path with ChangeNotifier {
     @required this.description,
     @required this.events,
     @required this.image,
+    this.dateTime,
   });
 }

@@ -147,10 +147,10 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PaymentOptionsPage()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => PaymentOptionsPage()),
+              // );
             },
             child: Padding(
               padding: EdgeInsets.all(15),

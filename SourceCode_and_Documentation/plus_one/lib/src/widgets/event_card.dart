@@ -6,16 +6,22 @@ import '../providers/events.dart';
 import '../providers/event.dart';
 import './focus_sheet.dart';
 
-class EventCard extends StatelessWidget {
+class EventCard extends StatefulWidget {
   final Event event;
   EventCard({
     @required this.event,
   });
 
+  @override
+  _EventCardState createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
   void _showFocusSheet(
     BuildContext ctx,
     String title,
     String description,
+    Event event,
   ) {
     showModalBottomSheet(
       context: ctx,
@@ -25,6 +31,7 @@ class EventCard extends StatelessWidget {
           child: GestureDetector(
             onTap: () {},
             child: FocusSheet(
+              event: event,
               title: title,
               description: description,
             ),
@@ -38,7 +45,12 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _showFocusSheet(context, event.title, event.description),
+      onTap: () => _showFocusSheet(
+        context,
+        widget.event.title,
+        widget.event.description,
+        widget.event,
+      ),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -55,7 +67,7 @@ class EventCard extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   child: Image.network(
                     // pathData.image,
-                    event.imageUrl,
+                    widget.event.imageUrl,
                     width: double.infinity,
                     fit: BoxFit.cover,
                     height: 150,
@@ -66,7 +78,7 @@ class EventCard extends StatelessWidget {
                       color: Colors.black38,
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
-                    event.title,
+                    widget.event.title,
                     style: buildLogoTextStyle(30),
                     softWrap: true,
                   ),

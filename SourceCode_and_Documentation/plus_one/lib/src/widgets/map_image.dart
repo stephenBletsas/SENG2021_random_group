@@ -1,19 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:plus_one/src/providers/event.dart';
 
-class MapImage extends StatelessWidget {
+class MapImage extends StatefulWidget {
+  final List<Event> eventLocs;
+
+  MapImage({@required this.eventLocs});
+  @override
+  _MapImageState createState() => _MapImageState();
+}
+
+class _MapImageState extends State<MapImage> {
+  // static const routeName = '/map-image';
+
+  GoogleMapController mapController;
+
+  final Map<String, Marker> _markers = {};
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+    setState(() {
+      _markers.clear();
+      for (final place in widget.eventLocs) {
+        final marker = Marker(
+          markerId: MarkerId(place.id),
+          position: LatLng(place.lat, place.long),
+          infoWindow: InfoWindow(
+            title: place.title,
+          ),
+        );
+        _markers[place.id] = marker;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // @required
     return Container(
       child: Stack(
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            child: Image.asset(
-              'assets/images/prototype_icons/coogee map.PNG',
-              width: double.infinity,
-              fit: BoxFit.cover,
-              height: 200,
+          Container(
+            height: 500,
+            width: 400,
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(
+                  widget.eventLocs[0].lat,
+                  widget.eventLocs[0].long,
+                ),
+                zoom: 16.0,
+              ),
+              markers: _markers.values.toSet(),
             ),
           ),
           Positioned(
