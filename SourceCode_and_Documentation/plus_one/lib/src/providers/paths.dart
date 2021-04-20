@@ -57,4 +57,8 @@ class Paths with ChangeNotifier {
     _paths.add(newPath);
     notifyListeners();
   }
+
+  void getPath(String title) {
+    final url = 'http://0.0.0.0:5000/get-path?';
+  }
 }
