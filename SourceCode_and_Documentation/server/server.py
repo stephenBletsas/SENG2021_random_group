@@ -53,7 +53,7 @@ def restaurant():
     radius = '5000'
 
     headers = {"Authorization": "Bearer ogcfnTUH24f20GImeBgHY7r90WNlgPEQrQTIHXSKhq9L-nj1-nBvosyAyoJ9eLingqAqjd1tC8lJs0rzyESrzii4GLK2IrkrzpJZZdAWxFywUB98HzPWQ51hQlZ9YHYx"}
-    url = 'https://api.yelp.com/v3/businesses/search?latitude={}&longitude={}&radius={}&term=restaurant&limit=50'.format(lat,lon,radius)
+    url = 'https://api.yelp.com/v3/businesses/search?latitude={}&longitude={}&radius={}&term=restaurant&limit=50&sort_by=rating'.format(lat,lon,radius)
     print(url)
     req = requests.get(url,headers=headers)
     response = req.json()
