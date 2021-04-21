@@ -29,7 +29,7 @@ class _LoadingPageState extends State<LoadingPage> {
 
   void init() async {
     // Wait 3 seconds
-    // await new Future.delayed(const Duration(seconds: 3));
+    await new Future.delayed(const Duration(seconds: 3));
     var auth = AuthService().getAuthInstance();
 
     // TODO: consider using auth.authStateChanges().listen((user) to check if
