@@ -1,0 +1,2 @@
+language = "python3"
+run = "python SourceCode_and_Documentation/server.py"
