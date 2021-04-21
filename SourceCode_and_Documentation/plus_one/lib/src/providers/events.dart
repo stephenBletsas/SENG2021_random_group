@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import './event.dart';
+import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class EventsList with ChangeNotifier {
   List<Event> _events = [
@@ -38,6 +41,21 @@ class EventsList with ChangeNotifier {
     return [..._events];
   }
 
-  // Future<void> getCEvents
+  Future<void> getCEvents(DateTime dt) async {
+    List<Event> _result = [];
+    // String fdt = DateFormat('yyyy-MM-ddTHH:mm:00Z').format(dt);
 
+    String fdt = dt.toUtc().toIso8601String();
+
+    print(fdt);
+    final url = 'http://0.0.0.0:5000/event?datetime=$fdt';
+
+    try {
+      final response = await http.get(url);
+      final l = json.decode(response.body);
+      print(l);
+    } catch (error) {
+      print(error);
+    }
+  }
 }

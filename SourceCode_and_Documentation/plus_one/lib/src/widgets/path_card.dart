@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/path.dart';
@@ -87,7 +88,8 @@ class PathCard extends StatelessWidget {
                             // padding:
                             //     EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                             child: Text(
-                              "01/04/21",
+                              DateFormat('kk:mm dd/MM')
+                                  .format(pathData.dateTime),
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,

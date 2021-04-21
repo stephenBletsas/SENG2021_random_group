@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:plus_one/src/providers/event.dart';
+import 'package:intl/intl.dart';
 
 class MapImage extends StatefulWidget {
   final List<Event> eventLocs;
@@ -37,10 +38,7 @@ class _MapImageState extends State<MapImage> {
 
   @override
   Widget build(BuildContext context) {
-    // Provider.of<Weather>(context, listen: false).getWeather(
-    //     widget.eventLocs[0].lat,
-    //     widget.eventLocs[0].long,
-    //     widget.dt.millisecondsSinceEpoch ~/ 1000);
+    String dt = DateFormat('kk:mm dd/MM').format(widget.dt);
 
     return Container(
       child: Stack(
@@ -60,39 +58,6 @@ class _MapImageState extends State<MapImage> {
               markers: _markers.values.toSet(),
             ),
           ),
-          // Positioned(
-          //   top: 10,
-          //   // bottom: 10,
-          //   left: 10,
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(15),
-          //       color: Colors.black26,
-          //     ),
-          //     // width: 100,
-          //     height: 50,
-          //     // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       children: [
-          //         Container(
-          //           // width: 50,
-          //           // child: Image.asset(
-          //           //   'assets/images/prototype_icons/sun.png',
-          //           //   // semanticsLabel: 'Acme Logo',
-          //           // ),
-          //           child: Text(Provider.of<Weather>(context).temp),
-          //         ),
-          //         Text(
-          //           Provider.of<Weather>(context).desc,
-          //           style: TextStyle(
-          //             color: Colors.black,
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
           Positioned(
             bottom: 10,
             left: 50,
@@ -115,7 +80,7 @@ class _MapImageState extends State<MapImage> {
                         'assets/images/prototype_icons/calendar.png',
                       ),
                     ),
-                    Text("01/04/21       10:30am"),
+                    Text(dt),
                     VerticalDivider(
                       width: 20,
                       color: Colors.grey,

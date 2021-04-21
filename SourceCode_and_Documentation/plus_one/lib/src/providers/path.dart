@@ -20,12 +20,12 @@ class Path with ChangeNotifier {
     @required this.dateTime,
   });
 
-  Path donePath() {
+  void donePath() {
     done = true;
     notifyListeners();
   }
 
-  Path doPath() {
+  void doPath() {
     isSelected = true;
     notifyListeners();
   }

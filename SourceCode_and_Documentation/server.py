@@ -27,6 +27,7 @@ APP.register_error_handler(Exception, defaultHandler)
 @APP.route('/event', methods=['GET'])
 def event():
     data = request.args.get('datetime')
+    data = data[0:19] + 'Z'
     print(data)
     data2 = f'{data[:4]}-{data[5:7]}-{data[8:10]}T23:59:59Z'
     print(f'{data}    ||    {data2}')
