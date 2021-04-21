@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
+import 'package:plus_one/src/styling/custom_text_styles.dart';
 
 class NotifOptionsPage extends StatefulWidget {
   @override
@@ -35,32 +36,27 @@ class _NotifOptionsState extends State<NotifOptionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: sixtyPercOrange,
-        title: Center(
-            child: Text(
-          'PlusOne',
-          style: TextStyle(
-              color: unselectedGray, fontWeight: FontWeight.bold, fontSize: 25),
-        )),
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: unselectedGray,
+          backgroundColor: sixtyPercOrange,
+          title: Center(child: Text('PlusOne', style: buildLogoTextStyle(40))),
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+          actions: [
+            Icon(
+              Icons.call,
+              color: Colors.transparent,
             ),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        actions: [
-          Icon(
-            Icons.call,
-            color: Colors.transparent,
-          ),
-          Icon(
-            Icons.call,
-            color: Colors.transparent,
-          )
-        ],
-      ),
+            Icon(
+              Icons.call,
+              color: Colors.transparent,
+            )
+          ],
+        ),
       body: ListView(
         children: <Widget>[
           Padding(

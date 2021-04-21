@@ -1,101 +1,104 @@
-// import 'package:plus_one/src/styling/custom_text_styles.dart';
-// import 'package:plus_one/src/pages/chats/chat_page.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
-// import 'package:intl/intl.dart';
-// import 'package:flutter_slidable/flutter_slidable.dart';
-// import 'package:plus_one/src/styling/color_palettes.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:plus_one/src/singleton/client_store.dart';
+import 'package:plus_one/src/pages/chats/chat_page.dart';
+import 'package:plus_one/src/utils/user_profile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import 'package:plus_one/src/styling/custom_text_styles.dart';
 
-// List<ChatData> listContact = [ ChatData(name : 'Hermione Granger', imagePath : "assets/images/prototype_icons/profile-colour.jpg" ,lastMessage:"Hi John there is..."),
-//  ChatData(name : 'Harry Potter', imagePath : "assets/images/prototype_icons/profile-colour.jpg" ,lastMessage:"Yo we should check..."),
-//  ChatData(name : 'Ron Weasly', imagePath : "assets/images/prototype_icons/profile-colour.jpg" ,lastMessage:"Haha yeah!")];
+List<QueryDocumentSnapshot> listContact = new List.from([]);
+String firebaseID = ClientStore().getFirebaseId();
 
-// class ChatListPage extends StatefulWidget {
-//   @override
-//   _ChatListPageState createState() => _ChatListPageState();
-// }
+class ChatListPage extends StatefulWidget {
+  @override
+  _ChatListPageState createState() => _ChatListPageState();
+}
 
-// class _ChatListPageState extends State<ChatListPage>{
+class _ChatListPageState extends State<ChatListPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: getContacts(),
+    );
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
+  Widget getContacts() {
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('Users')
+            .doc(firebaseID)
+            .collection('Contacts')
+            .orderBy('timestamp', descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+                child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.pink[400])));
+          } else {
+            listContact.addAll(snapshot.data.docs);
+            return ListView.builder(
+                itemBuilder: (context, index) =>
+                    buildChatTile(context, snapshot.data.docs[index]),
+                itemCount: snapshot.data.docs.length);
+          }
+        });
+  }
 
-//     return Scaffold(
-//           backgroundColor: Colors.transparent,
-//           body: getContacts()
-//         );
-//   }
+  Widget buildChatTile(BuildContext context, DocumentSnapshot document) {
+    return ListTile(
+      leading: CircleAvatar(
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(220.0),
+            child: CachedNetworkImage(
+              placeholder: (context, url) => CircularProgressIndicator(),
+              imageUrl: "https://www.pngkey.com/png/full/73-730477_first-name-profile-image-placeholder-png.png",
+              fit: BoxFit.cover,
+            )),
+      ),
+      title: Text(document.data()['name'],
+          overflow: TextOverflow.ellipsis,
+          style: document.data()['unreadCount'] == 0
+              ? buildRobotoTextStyle(16, Colors.black)
+              : buildBoldRobotoText(16, Colors.black)),
+      subtitle: Row(
+        children: [
+          Expanded(
+            child: Text(document.data()['lastMessage'],
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: document.data()['unreadCount'] == 0
+                    ? buildRobotoTextStyle(14, Colors.black)
+                    : buildBoldRobotoText(14, Colors.black)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text(
+                DateFormat('dd/MM hh:mm')
+                    .format(document.data()['timestamp'].toDate()),
+                textAlign: TextAlign.right,
+                style: document.data()['unreadCount'] == 0
+                    ? buildRobotoTextStyle(16, Colors.black)
+                    : buildBoldRobotoText(16, Colors.black)),
+          ),
+        ],
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPage(
+                  peerFirebaseId: document.id,
+                  peerName: document.data()['name'],
+                  peerMiniProfilePhotoURL:
+                      document.data()['miniProfilePhotoURL']),
+            ));
+      },
+      onLongPress: () {}, //Can add more feature into this if needed
+    );
+  }
 
-//   Widget getContacts() {
-//     return ListView.builder(
-//                 itemBuilder: (context, index) =>
-//                     buildChatTile(context, listContact[index]),
-//                 itemCount: 1);
-//           }
-
-//   Widget buildChatTile(BuildContext context, ChatData document) {
-//     return Slidable(
-//       actionExtentRatio: 0.15,
-//       delegate: SlidableDrawerDelegate(),
-//       child: ListTile(
-//         leading: GestureDetector(
-//           onTap: null,
-//           child:Container(
-//                         width: 50.0,
-//                         height: 50.0,
-//                         decoration: BoxDecoration(
-//                             image: DecorationImage(
-//                                 image: AssetImage(
-//                                     "assets/images/prototype_icons/profile-colour.jpg"),
-//                                 fit: BoxFit.cover),
-//                             borderRadius: BorderRadius.circular(100)),
-//                       ),
-//         ),
-//         title: Text(document.name,
-//             overflow: TextOverflow.ellipsis,
-//             style: buildRobotoTextStyle(16, Colors.black)),
-//         subtitle: Row(
-//           children: [
-//             Expanded(
-//               child: Text(document.lastMessage,
-//                   maxLines: 1,
-//                   overflow: TextOverflow.ellipsis,
-//                   style: buildRobotoTextStyle(14, Colors.black),
-//             )),
-//           ],
-//         ),
-//         onTap: () {
-//           // Navigator.push(
-//           //     context,
-//           //     MaterialPageRoute(
-//           //       builder: (context) => ChatPage(
-//           //           name: document.name,
-//           //           imagePath:
-//           //               document.imagePath,
-//           //     ));
-//         },
-//         onLongPress: () {}, //Can add more feature into this if needed
-//       ),
-//       secondaryActions: <Widget>[
-//         IconSlideAction(
-//           icon: Icons.report,
-//           color: Colors.red,
-//           caption: "Report",
-//           onTap: () => {},
-//         )
-//       ],
-//     );
-//   }
-
-// }
-
-// class ChatData {
-//   String name;
-//   String imagePath;
-//   String lastMessage;
-
-//   ChatData(
-//       {this.name,
-//       this.imagePath,
-//       this.lastMessage});
-// }
+}

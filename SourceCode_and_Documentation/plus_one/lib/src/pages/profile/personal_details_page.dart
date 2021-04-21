@@ -38,18 +38,11 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: sixtyPercOrange,
-          title: Center(
-              child: Text(
-            'PlusOne',
-            style: TextStyle(
-                color: unselectedGray,
-                fontWeight: FontWeight.bold,
-                fontSize: 25),
-          )),
+          title: Center(child: Text('PlusOne', style: buildLogoTextStyle(40))),
           leading: IconButton(
               icon: Icon(
-                Icons.arrow_back_ios,
-                color: unselectedGray,
+                Icons.arrow_back,
+                color: Colors.white,
               ),
               onPressed: () {
                 Navigator.pop(context);

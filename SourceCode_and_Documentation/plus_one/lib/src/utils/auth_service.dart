@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:plus_one/src/utils/user_profile.dart' as userProfile;

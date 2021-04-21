@@ -7,9 +7,10 @@ import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
 import 'package:plus_one/src/pages/profile/tos_page.dart';
 import 'package:plus_one/src/pages/profile/how_it_works.dart';
-import 'package:plus_one/src/pages/profile/payment_options_page.dart';
+import 'package:plus_one/src/pages/profile/get_help.dart';
 import 'package:plus_one/src/pages/profile/notif_options_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plus_one/src/utils/auth_service.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -143,44 +144,6 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => PaymentOptionsPage()),
-              // );
-            },
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      "Payments",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Icon(
-                    Icons.payment_outlined,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 30),
-            decoration: BoxDecoration(
-              color: Colors.black12,
-            ),
-            width: 50,
-            height: 1,
-          ),
-          FlatButton(
-            splashColor: Colors.grey,
-            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => NotifOptionsPage()),
@@ -267,7 +230,12 @@ class _ProfileState extends State<ProfilePage> {
           ),
           FlatButton(
             splashColor: Colors.grey,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GetHelpPage()),
+              );
+            },
             child: Padding(
               padding: EdgeInsets.all(15),
               child: Row(
@@ -347,6 +315,7 @@ class _ProfileState extends State<ProfilePage> {
           FlatButton(
             splashColor: Colors.grey,
             onPressed: () {
+              AuthService().signOut();
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => LoginPage()),

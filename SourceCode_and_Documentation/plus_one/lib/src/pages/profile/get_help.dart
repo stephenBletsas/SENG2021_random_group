@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 
 //  flutter_webview_plugin: ^0.3.11
 
-
-class AboutUsPage extends StatefulWidget {
+class GetHelpPage extends StatefulWidget {
   @override
-  _AboutUsPageState createState() => _AboutUsPageState();
+  _GetHelpPageState createState() => _GetHelpPageState();
 }
 
-class _AboutUsPageState extends State<AboutUsPage> {
+class _GetHelpPageState extends State<GetHelpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        backgroundColor: seafoamGreen,
+        appBar: AppBar(
           backgroundColor: sixtyPercOrange,
           title: Center(child: Text('PlusOne', style: buildLogoTextStyle(40))),
           leading: IconButton(
@@ -38,22 +36,24 @@ class _AboutUsPageState extends State<AboutUsPage> {
             )
           ],
         ),
-      body: FutureBuilder(
-          future: rootBundle.loadString("assets/README.md"),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (snapshot.hasData) {
-              return Markdown(
-                data: snapshot.data,
-                styleSheet: MarkdownStyleSheet(
-                  h1: TextStyle(color: persianGreen, fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              );
-            }
-
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
-    );
+        body: Center(
+            child: Column(
+          children: [
+            Container(
+                padding: EdgeInsets.fromLTRB(0, 200, 0, 200),
+                child: Text(
+                  "Plus One",
+                  style: buildLogoTextStyle(60),
+                )),
+            SizedBox(height: 0),
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text(
+                  "Feel free to contact our team at jalal.faris@hotmail.com for any queries.",
+                  textAlign: TextAlign.center,
+                  style: buildRobotoTextStyle(16, Colors.black)),
+            )
+          ],
+        )));
   }
 }

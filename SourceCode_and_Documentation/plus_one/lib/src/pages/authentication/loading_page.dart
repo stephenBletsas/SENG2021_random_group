@@ -34,6 +34,7 @@ class _LoadingPageState extends State<LoadingPage> {
     // TODO: consider using auth.authStateChanges().listen((user) to check if
     // user is logged out mid-session.
     if (auth.currentUser != null) {
+      ClientStore().setFirebaseId(auth.currentUser.uid);
       if (!auth.currentUser.emailVerified) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => VerifyEmailPage()));

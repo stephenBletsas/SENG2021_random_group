@@ -16,7 +16,7 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeScreen(),
-    // ChatListPage(),
+    ChatListPage(),
     EventsPage(),
     HistoryPage(),
     ProfilePage()
