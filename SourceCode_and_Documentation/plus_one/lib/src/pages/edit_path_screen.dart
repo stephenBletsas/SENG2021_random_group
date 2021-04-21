@@ -61,7 +61,10 @@ class EditPathScreen extends StatelessWidget {
                   );
                 } else {
                   Event event = path.events[i - 2];
-                  return EventCard(event: event);
+                  return EventCard(
+                    event: event,
+                    dt: path.dateTime,
+                  );
                 }
               },
               childCount: path.events.length + 2,

@@ -53,6 +53,7 @@ class ViewPathScreen extends StatelessWidget {
                 if (i == 1) {
                   return MapImage(
                     eventLocs: path_markers,
+                    dt: path.dateTime,
                   );
                 } else if (i == 0) {
                   return Container(
@@ -66,7 +67,10 @@ class ViewPathScreen extends StatelessWidget {
                   );
                 } else {
                   Event event = path.events[i - 2];
-                  return EventCard(event: event);
+                  return EventCard(
+                    event: event,
+                    dt: path.dateTime,
+                  );
                 }
               },
               childCount: path.events.length + 2,

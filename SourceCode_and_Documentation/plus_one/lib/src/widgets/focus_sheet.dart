@@ -23,14 +23,6 @@ class FocusSheet extends StatefulWidget {
 }
 
 class _FocusSheetState extends State<FocusSheet> {
-  // final String title;
-  // final String description;
-
-  // _FocusSheetState({
-  //   @required this.title,
-  //   @required this.description,
-  // });
-
   int segmentedControlGroupValue = 0;
   void changeState(value) {
     if (segmentedControlGroupValue == 1) {

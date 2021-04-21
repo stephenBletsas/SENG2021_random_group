@@ -5,11 +5,14 @@ import 'package:provider/provider.dart';
 import '../providers/events.dart';
 import '../providers/event.dart';
 import './focus_sheet.dart';
+import '../providers/weather.dart';
 
 class EventCard extends StatefulWidget {
   final Event event;
+  final DateTime dt;
   EventCard({
     @required this.event,
+    @required this.dt,
   });
 
   @override
@@ -23,6 +26,8 @@ class _EventCardState extends State<EventCard> {
     String description,
     Event event,
   ) {
+    Provider.of<Weather>(context, listen: false).getWeather(widget.event.lat,
+        widget.event.long, DateTime.now().millisecondsSinceEpoch ~/ 1000);
     showModalBottomSheet(
       context: ctx,
       builder: (_) {
