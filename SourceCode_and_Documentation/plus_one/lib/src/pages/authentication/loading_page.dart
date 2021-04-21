@@ -1,6 +1,7 @@
 import 'package:plus_one/src/pages/authentication/login_page.dart';
 import 'package:plus_one/src/pages/authentication/verify_email_page.dart';
 import 'package:plus_one/src/pages/home_nav_bar.dart';
+import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/utils/auth_service.dart';
 import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +23,13 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Image.asset('assets/images/prototype_icons/PlusOneLogo.png'),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [Image.asset('assets/images/prototype_icons/PlusOneLogo.png'), SizedBox(height: 10), Text("Easy Planning, Exciting Adventures", style: buildRobotoTextStyle(15, Colors.black),)])
     ));
   }
 
   void init() async {
     // Wait 3 seconds
-    await new Future.delayed(const Duration(seconds: 3));
+    // await new Future.delayed(const Duration(seconds: 3));
     var auth = AuthService().getAuthInstance();
 
     // TODO: consider using auth.authStateChanges().listen((user) to check if
