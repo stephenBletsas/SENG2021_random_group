@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/pages/profile/personal_details_page.dart';
+import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/login_page.dart';
@@ -59,13 +61,7 @@ class _ProfileState extends State<ProfilePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        "John",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            color: unselectedGray),
-                      ),
+                      _buildName(),
                       SizedBox(
                         height: 10,
                       ),
@@ -391,4 +387,36 @@ class _ProfileState extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget _buildName() {
+    print(ClientStore().getFirebaseId());
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('Users')
+            .doc(ClientStore().getFirebaseId())
+            .snapshots(),
+        builder: (builder, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
+          } else {
+            String name = snapshot.data['name'];
+            print(name);
+            return Text(
+                        name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            color: unselectedGray),
+                      );
+          }
+        });
+  }
+
+  
+
+
+
+
 }

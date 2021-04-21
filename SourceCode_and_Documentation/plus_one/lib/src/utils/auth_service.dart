@@ -42,6 +42,7 @@ class AuthService {
     firebase.UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     firebase.User user = result.user;
+    ClientStore().setFirebaseId(user.uid);
     await fetchUserFromFirestore(user.uid);
 
     return user;

@@ -34,6 +34,7 @@ class User {
 
   setOnboarded(bool onboarded) {
     this.onboarded = onboarded;
+    ClientStore().setFirestoreUser();
   }
 
   setName(String name) {

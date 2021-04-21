@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/utils/user_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,11 +17,11 @@ abstract class ClientStoreBase {
   }
  
   void setFirestoreUser() async {
-    // print(user.toJson());
-    // await FirebaseFirestore.instance
-    //     .collection("Users")
-    //     .doc(getFirebaseId())
-    //     .set(user.toJson(), SetOptions(merge: true));
+    print(user.toJson());
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(getFirebaseId())
+        .set(user.toJson(), SetOptions(merge: true));
   }
 
   void setFirebaseId(String firebaseId) {

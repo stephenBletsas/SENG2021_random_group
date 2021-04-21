@@ -41,6 +41,7 @@ dependencies:
   firebase_storage: ^7.0.0
   google_sign_in: 4.4.4
   json_annotation: ^3.0.0
+  http: ^0.12.0+2
 
   google_maps_flutter: ^2.0.1
   # currency_pickers: ^1.0.6

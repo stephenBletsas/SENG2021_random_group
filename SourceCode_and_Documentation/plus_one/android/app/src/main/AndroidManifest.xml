@@ -2,6 +2,7 @@
     package="com.example.plus_one">
    <application
         android:label="plus_one"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data
               android:name="com.google.android.geo.API_KEY"

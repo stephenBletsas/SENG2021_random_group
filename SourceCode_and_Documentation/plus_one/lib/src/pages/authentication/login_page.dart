@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:plus_one/src/pages/authentication/verify_email_page.dart';
+import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/pages/authentication/sign_up_page.dart';
 import 'package:plus_one/src/pages/home_nav_bar.dart';
 import 'package:flutter/services.dart';
+import 'package:plus_one/src/utils/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -119,13 +123,90 @@ class _LoginPageState extends State<LoginPage> {
                     ]))));
   }
 
-  logIn() async {
+  facebooklogIn() async {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => HomeNavBarPage()),
       (Route<dynamic> route) => false,
     );
     print("LOGGING IN");
+  }
+
+  logIn() async {
+    await AuthService()
+        .logInWithEmailAndPassword(
+            emailIDTextController.text, passwordTextController.text)
+        .then((user) {
+      if (!AuthService().isEmailVerified()) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VerifyEmailPage()),
+        );
+      }  else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeNavBarPage()),
+          (Route<dynamic> route) => false,
+        );
+      }
+    }).catchError((error) {
+      String errMessage = error.toString();
+      print("CAUGHT ERROR:" + errMessage);
+
+      Fluttertoast.showToast(
+          // errMessage is of format "[ErrorType]ErrorDescription"
+          // Display only error description by getting the substring
+          // of errMessage after the last instance of ']'
+          msg: errMessage.substring(errMessage.lastIndexOf(']') + 1),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.black);
+    });
+  }
+
+   googleLogin() async {
+    try {
+      await AuthService().signInWithGoogle().then((user) {
+        // this is to check if a google account is selected
+        if (user != null) {
+          // assume the user doesn't exist if all user details have not been completed
+          if (ClientStore().getUser().getOnboarded() == false) {
+            Fluttertoast.showToast(
+                msg:
+                    "There is no account linked to this email ID yet. Please create account instead.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 10,
+                backgroundColor: Colors.grey,
+                textColor: Colors.black);
+
+            // delay so that the toast will be displayed
+            Future.delayed(const Duration(milliseconds: 3000), () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUpPage()),
+              );
+            });
+          } else {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => HomeNavBarPage()),
+              (Route<dynamic> route) => false,
+            );
+          }
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginPage()),
+          );
+        }
+      });
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   register() {
@@ -257,7 +338,7 @@ class _LoginPageState extends State<LoginPage> {
         margin: const EdgeInsets.only(top: 20.0),
         child: GestureDetector(
             onTap: () {
-              logIn();
+              googleLogin();
             },
             child: Image.asset(
               'assets/images/google_icon.png',
@@ -279,7 +360,7 @@ class _LoginPageState extends State<LoginPage> {
         margin: const EdgeInsets.only(top: 20.0),
         child: GestureDetector(
             onTap: () {
-              logIn();
+              facebooklogIn();
             },
             child: Image.asset(
               'assets/images/facebook_icon2.png',
