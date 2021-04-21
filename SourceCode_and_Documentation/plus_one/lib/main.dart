@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/pages/create_path_screen_dt.dart';
+import 'package:plus_one/src/providers/weather.dart';
 import 'package:provider/provider.dart';
 
 import './src/providers/events.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Paths(),
         ),
+        ChangeNotifierProvider.value(value: Weather())
       ],
       child: MaterialApp(
         title: "PlusOne",

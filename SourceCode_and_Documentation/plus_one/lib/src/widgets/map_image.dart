@@ -4,22 +4,24 @@ import 'package:plus_one/src/providers/event.dart';
 
 class MapImage extends StatefulWidget {
   final List<Event> eventLocs;
+  final DateTime dt;
 
-  MapImage({@required this.eventLocs});
+  MapImage({@required this.eventLocs, @required this.dt});
   @override
   _MapImageState createState() => _MapImageState();
 }
 
 class _MapImageState extends State<MapImage> {
-  // static const routeName = '/map-image';
-
   GoogleMapController mapController;
 
   final Map<String, Marker> _markers = {};
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+
     setState(() {
       _markers.clear();
+
       for (final place in widget.eventLocs) {
         final marker = Marker(
           markerId: MarkerId(place.id),
@@ -35,6 +37,11 @@ class _MapImageState extends State<MapImage> {
 
   @override
   Widget build(BuildContext context) {
+    // Provider.of<Weather>(context, listen: false).getWeather(
+    //     widget.eventLocs[0].lat,
+    //     widget.eventLocs[0].long,
+    //     widget.dt.millisecondsSinceEpoch ~/ 1000);
+
     return Container(
       child: Stack(
         children: <Widget>[
@@ -53,38 +60,39 @@ class _MapImageState extends State<MapImage> {
               markers: _markers.values.toSet(),
             ),
           ),
-          Positioned(
-            top: 10,
-            // bottom: 10,
-            left: 10,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.black26,
-              ),
-              width: 100,
-              height: 50,
-              // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 50,
-                    child: Image.asset(
-                      'assets/images/prototype_icons/sun.png',
-                      // semanticsLabel: 'Acme Logo',
-                    ),
-                  ),
-                  Text(
-                    "33",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 10,
+          //   // bottom: 10,
+          //   left: 10,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(15),
+          //       color: Colors.black26,
+          //     ),
+          //     // width: 100,
+          //     height: 50,
+          //     // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //       children: [
+          //         Container(
+          //           // width: 50,
+          //           // child: Image.asset(
+          //           //   'assets/images/prototype_icons/sun.png',
+          //           //   // semanticsLabel: 'Acme Logo',
+          //           // ),
+          //           child: Text(Provider.of<Weather>(context).temp),
+          //         ),
+          //         Text(
+          //           Provider.of<Weather>(context).desc,
+          //           style: TextStyle(
+          //             color: Colors.black,
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Positioned(
             bottom: 10,
             left: 50,
