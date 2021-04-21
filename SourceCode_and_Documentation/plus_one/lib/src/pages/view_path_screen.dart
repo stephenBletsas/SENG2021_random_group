@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plus_one/src/pages/home_nav_bar.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
 import 'package:plus_one/src/widgets/map_image.dart';
@@ -15,17 +16,20 @@ class ViewPathScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pathId = ModalRoute.of(context).settings.arguments as String;
     final path = Provider.of<Paths>(context, listen: true).findById(pathId);
-    final List<Event> path_markers = [];
+    final List<Event> pathMarkers = [];
+
     for (final event in path.events) {
-      path_markers.add(event);
+      pathMarkers.add(event);
     }
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Text(
-              'PlusOne',
-              style: buildLogoTextStyle(40),
+            title: Center(
+              child: Text(
+                'PlusOne',
+                style: buildLogoTextStyle(40),
+              ),
             ),
             // Allows the user to reveal the app bar if they begin scrolling back
             // up the list of items.
@@ -44,7 +48,18 @@ class ViewPathScreen extends StatelessWidget {
                     arguments: pathId,
                   );
                 },
-              )
+              ),
+              // IconButton(
+              //   padding: EdgeInsets.all(5),
+              //   icon: Icon(
+              //     Icons.done,
+              //     color: Colors.lightGreen,
+              //     size: 40,
+              //   ),
+              //   onPressed: () {
+              //     path.donePath();
+              //   },
+              // )
             ],
           ),
           SliverList(
@@ -52,7 +67,7 @@ class ViewPathScreen extends StatelessWidget {
               (ctx, i) {
                 if (i == 1) {
                   return MapImage(
-                    eventLocs: path_markers,
+                    eventLocs: pathMarkers,
                     dt: path.dateTime,
                   );
                 } else if (i == 0) {
@@ -78,6 +93,31 @@ class ViewPathScreen extends StatelessWidget {
           )
         ],
       ),
+      floatingActionButton: path.isSelected
+          ? Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.green,
+              ),
+              child: IconButton(
+                  icon: Icon(Icons.done),
+                  onPressed: () {
+                    path.donePath();
+                    Navigator.of(context).pop();
+                  }),
+            )
+          : Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.green,
+              ),
+              child: IconButton(
+                  icon: Icon(Icons.add_location_alt_outlined),
+                  onPressed: () {
+                    path.doPath();
+                    Navigator.of(context).pop();
+                  }),
+            ),
     );
   }
 }

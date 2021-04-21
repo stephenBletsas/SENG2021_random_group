@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './event.dart';
 import './path.dart';
 import 'package:http/http.dart' as http;
@@ -49,7 +50,7 @@ class Paths with ChangeNotifier {
   ];
 
   List<Path> get paths {
-    return [..._paths];
+   return [..._paths];
   }
 
   Path findById(String id) {
@@ -96,5 +97,27 @@ class Paths with ChangeNotifier {
     }
 
     return newPath;
+  }
+
+  List<Path> getDonePaths() {
+    List<Path> result = [];
+
+    for (Path p in _paths) {
+      if (p.done == true) {
+        result.add(p);
+      }
+    }
+
+    return result;
+  }
+
+  List<Path> getSelectedPaths() {
+    List<Path> result = [];
+    for (Path p in _paths) {
+      if (p.isSelected == true) {
+        result.add(p);
+      }
+    }
+    return result;
   }
 }

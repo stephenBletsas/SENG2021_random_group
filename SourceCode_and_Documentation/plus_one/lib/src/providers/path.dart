@@ -8,6 +8,8 @@ class Path with ChangeNotifier {
   final String image;
   final List<Event> events;
   final DateTime dateTime;
+  bool done = false;
+  bool isSelected = false;
 
   Path({
     @required this.id,
@@ -17,4 +19,14 @@ class Path with ChangeNotifier {
     @required this.image,
     @required this.dateTime,
   });
+
+  Path donePath() {
+    done = true;
+    notifyListeners();
+  }
+
+  Path doPath() {
+    isSelected = true;
+    notifyListeners();
+  }
 }

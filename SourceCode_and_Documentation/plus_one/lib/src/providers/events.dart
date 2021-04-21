@@ -37,4 +37,7 @@ class EventsList with ChangeNotifier {
   List<Event> get events {
     return [..._events];
   }
+
+  // Future<void> getCEvents
+
 }
