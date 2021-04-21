@@ -1,3 +1,4 @@
+import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
 import 'package:flutter/material.dart';
 import 'package:plus_one/src/styling/custom_text_styles.dart';
@@ -17,7 +18,7 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   // Create a list of text controller and use it to retrieve the current value
   // of the TextField.
   TextEditingController nameTextController =
-      new TextEditingController(text: "Faris Jalal");
+      new TextEditingController();
   TextEditingController dobTextController = new TextEditingController();
 
   DateTime dobSelectedDate;
@@ -138,6 +139,19 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   }
 
   void next() {
+    int gender;
+    if (_valueFemale) {
+      gender = 1;
+    } else if (_valueMale) {
+      gender = 0;
+    } else {
+      gender = 2;
+    }
+
+    ClientStore().getUser().setGender(gender);
+    ClientStore().getUser().setName(nameTextController.text);
+    ClientStore().getUser().setDob(dobSelectedDate);
+
     Navigator.pop(context);
   }
 
