@@ -3,8 +3,6 @@ import './event.dart';
 import './path.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'event.dart';
 import 'event.dart';
 
 class Paths with ChangeNotifier {

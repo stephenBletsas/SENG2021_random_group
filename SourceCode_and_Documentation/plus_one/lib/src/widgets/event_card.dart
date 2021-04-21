@@ -27,7 +27,7 @@ class _EventCardState extends State<EventCard> {
       context: ctx,
       builder: (_) {
         return Container(
-          height: 700,
+          height: 800,
           child: GestureDetector(
             onTap: () {},
             child: FocusSheet(

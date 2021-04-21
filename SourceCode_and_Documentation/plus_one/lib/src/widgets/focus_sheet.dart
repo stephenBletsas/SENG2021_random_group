@@ -63,11 +63,11 @@ class _FocusSheetState extends State<FocusSheet> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 5,
           ),
           segmentedControlGroupValue == 0
               ? Container(
-                  height: 300,
+                  // height: 300,
                   // width: 350,
                   decoration: BoxDecoration(
                     // color: Colors.orangeAccent,
@@ -93,7 +93,7 @@ class _FocusSheetState extends State<FocusSheet> {
                       )),
                 ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(5),
             child: CupertinoSlidingSegmentedControl(
               groupValue: segmentedControlGroupValue,
               children: <int, Widget>{

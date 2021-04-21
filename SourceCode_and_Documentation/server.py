@@ -105,7 +105,7 @@ def weather():
 @APP.route('/create-path', methods=['GET'])
 def get_path():
     theme = request.args.get('theme')
-    path = {
+    path1 = {
       'id': 'P2',
       'title': 'A Nice Evening Out!',
       'description': 'A Wonderful Dinner With Club Experience!!',
@@ -143,6 +143,55 @@ def get_path():
       'image':
           "https://res.cloudinary.com/tf-lab/image/upload/w_600,h_337,c_fill,g_auto:subject,q_auto,f_auto/restaurant/777331f9-a4e3-4bc2-81b0-af8e576eac1e/17f377f4-88ba-4f87-adc4-fd21b366e89d.jpg",
     }
+
+    path2 = {
+        'id': 'P3',
+        'title': 'Sydney Opera House Tour!',
+        'description': 'A walk with a beautiful scenic view!',
+      'events': [
+        {
+          'id': 'E7',
+          'title': 'Sydney Opera House',
+          'description':
+              "The Sydney Opera house is a multi venue performing centre located at Sydney Harbour in Sydney.The Sydney Opera House is one of the most photographed buildings in the world,known for its unique use of a series of gleaming white sail-shaped shells as its roof structure.",
+          'imageUrl':
+            'https://media2.trover.com/T/53e5403bd6bdd47d32000036/fixedw.jpg',
+          'lat': -33.86568,
+          'long': 151.2153,
+        },
+        {
+          'id': 'E8',
+          'title': 'Sydney Harbour Bridge',
+          'description':
+              "The Sydney Harbour Bridge is an iconic landmark spanning one of the finest natural harbours known to mankind. Opened in 1932, the bridge is fondly nicknamed the Coathanger by Sydneysiders. You can walk and cycle across the bridge or climb to the top for stunning views.",
+          'imageUrl':
+              'https://upload.wikimedia.org/wikipedia/commons/a/a8/Sydney_harbour_bridge_new_south_wales.jpg',
+          'lat': -33.852294,
+          'long': 151.210735
+        },
+        {
+          'id': 'E9',
+          'title': 'Dinner alongside Darling Harbour',
+          'description': "Lavish dinner at the famous Hard Rock Cafe alongside Darling Harbour.Enjoy the spectacular view!",
+          'imageUrl':
+             'https://images.otstatic.com/prod/25797386/1/large.jpg',
+          'lat': -33.8669,
+          'long': 151.2008,
+        }
+      ],
+      'image':
+          'https://media2.trover.com/T/53e5403bd6bdd47d32000036/fixedw.jpg'
+    }
+
+    if(theme=="CITY"):
+        return dumps(path1)
+    elif (theme=="TOURIST ATTRACTION"):
+        return dumps(path2)
+
+
+
+
+
     return dumps(path)
 
 
