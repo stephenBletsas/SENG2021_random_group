@@ -50,6 +50,7 @@ class _FocusSheetState extends State<FocusSheet> {
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
             margin: EdgeInsets.symmetric(vertical: 5),

@@ -153,11 +153,11 @@ def get_path():
           'id': 'E7',
           'title': 'Sydney Opera House',
           'description':
-              "The Sydney Opera house is a multi venue performing centre located at Sydney Harbour in Sydney.The Sydney Opera House is one of the most photographed buildings in the world,known for its unique use of a series of gleaming white sail-shaped shells as its roof structure.",
+              "The Sydney Opera house is a multi venue performing centre located at Sydney Harbour in Sydney. The Sydney Opera House is one of the most photographed buildings in the world, known for its unique use of a series of gleaming white sail-shaped shells as its roof structure.",
           'imageUrl':
             'https://media2.trover.com/T/53e5403bd6bdd47d32000036/fixedw.jpg',
-          'lat': -33.86568,
-          'long': 151.2153,
+          'lat': -33.85678,
+          'long': 151.21531,
         },
         {
           'id': 'E8',
@@ -171,7 +171,7 @@ def get_path():
         },
         {
           'id': 'E9',
-          'title': 'Dinner alongside Darling Harbour',
+          'title': 'Dinner Alongside Darling Harbour',
           'description': "Lavish dinner at the famous Hard Rock Cafe alongside Darling Harbour.Enjoy the spectacular view!",
           'imageUrl':
              'https://images.otstatic.com/prod/25797386/1/large.jpg',
