@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class EventsList with ChangeNotifier {
+  List<Event> _newEvents = [];
   List<Event> _events = [
     Event(
       id: 'E1',
@@ -41,21 +42,42 @@ class EventsList with ChangeNotifier {
     return [..._events];
   }
 
+  List<Event> get newEvents {
+    // print(_newEvents);
+    return [..._newEvents];
+  }
+
   Future<void> getCEvents(DateTime dt) async {
-    List<Event> _result = [];
+    // List<Event> result = [];
     // String fdt = DateFormat('yyyy-MM-ddTHH:mm:00Z').format(dt);
 
     String fdt = dt.toUtc().toIso8601String();
 
     print(fdt);
-    final url = 'http://0.0.0.0:5000/event?datetime=$fdt';
+    final url = 'http://0.0.0.0:5000/event?datetime=2021-04-24T09:00:00Z';
 
     try {
       final response = await http.get(url);
       final l = json.decode(response.body);
-      print(l);
+
+      for (Map e in l) {
+        double lat = double.parse(e['lat']);
+        double long = double.parse(e['long']);
+
+        Event event = Event(
+          id: DateTime.now().toString(),
+          title: e['name'],
+          description: e['description'],
+          imageUrl: e['imageUrl'],
+          lat: lat,
+          long: long,
+        );
+        _newEvents.add(event);
+        print(_newEvents);
+      }
     } catch (error) {
       print(error);
     }
   }
 }
+//  [{name: Handa Opera on Sydney Harbour - La Traviata, lat: -33.869579, long: 151.210004, image: https://s1.ticketm.net/dam/a/d86/9c4318fc-caba-4483-a80f-164f7f824d86_1391001_CUSTOM.jpg, datetime: 2021-04-21T09:30:00Z, description: Gates open 2 hours prior to performance time.}]

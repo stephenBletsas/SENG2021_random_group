@@ -7,6 +7,8 @@ import 'package:plus_one/src/pages/chats/chat_list_page.dart';
 import 'package:plus_one/src/pages/events/events_page.dart';
 import 'package:plus_one/src/pages/history/history_page.dart';
 import 'package:plus_one/src/pages/profile/profile_page.dart';
+import 'package:provider/provider.dart';
+import '../providers/events.dart';
 
 class HomeNavBarPage extends StatefulWidget {
   _HomeNavBarPageState createState() => _HomeNavBarPageState();
@@ -58,6 +60,8 @@ class _HomeNavBarPageState extends State<HomeNavBarPage> {
 
   void onTabTapped(int index) {
     setState(() {
+      Provider.of<EventsList>(context, listen: false)
+          .getCEvents(DateTime.now());
       _currentIndex = index;
     });
   }

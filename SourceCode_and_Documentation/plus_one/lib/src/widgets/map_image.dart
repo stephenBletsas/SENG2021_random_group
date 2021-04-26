@@ -81,15 +81,15 @@ class _MapImageState extends State<MapImage> {
                       ),
                     ),
                     Text(dt),
-                    VerticalDivider(
-                      width: 20,
-                      color: Colors.grey,
-                      thickness: 2,
-                      indent: 2,
-                      endIndent: 3,
-                    ),
-                    Icon(Icons.contacts_rounded),
-                    Text("Friends")
+                    // VerticalDivider(
+                    //   width: 20,
+                    //   color: Colors.grey,
+                    //   thickness: 2,
+                    //   indent: 2,
+                    //   endIndent: 3,
+                    // ),
+                    // Icon(Icons.contacts_rounded),
+                    // Text("Friends")
                   ],
                 ),
               ),

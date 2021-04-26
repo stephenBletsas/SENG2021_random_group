@@ -36,20 +36,20 @@ class ViewPathScreen extends StatelessWidget {
               floating: true,
               backgroundColor: sixtyPercOrange,
               expandedHeight: 20,
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    Icons.edit,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      EditPathScreen.routeName,
-                      arguments: pathId,
-                    );
-                  },
-                ),
-              ],
+              // actions: [
+              //   IconButton(
+              //     icon: Icon(
+              //       Icons.edit,
+              //       color: Colors.black,
+              //     ),
+              //     onPressed: () {
+              //       Navigator.of(context).pushNamed(
+              //         EditPathScreen.routeName,
+              //         arguments: pathId,
+              //       );
+              //     },
+              //   ),
+              // ],
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:plus_one/src/singleton/client_store.dart';
 import 'package:plus_one/src/pages/chats/chat_page.dart';
 import 'package:plus_one/src/utils/user_profile.dart';
@@ -52,12 +52,15 @@ class _ChatListPageState extends State<ChatListPage> {
     return ListTile(
       leading: CircleAvatar(
         child: ClipRRect(
-            borderRadius: BorderRadius.circular(220.0),
-            child: CachedNetworkImage(
-              placeholder: (context, url) => CircularProgressIndicator(),
-              imageUrl: "https://www.pngkey.com/png/full/73-730477_first-name-profile-image-placeholder-png.png",
-              fit: BoxFit.cover,
-            )),
+          borderRadius: BorderRadius.circular(220.0),
+          child: Text("Hello"),
+          // child: CachedNetworkImage(
+          //   placeholder: (context, url) => CircularProgressIndicator(),
+          //   imageUrl:
+          //       "https://www.pngkey.com/png/full/73-730477_first-name-profile-image-placeholder-png.png",
+          //   fit: BoxFit.cover,
+          // ),
+        ),
       ),
       title: Text(document.data()['name'],
           overflow: TextOverflow.ellipsis,
@@ -100,5 +103,4 @@ class _ChatListPageState extends State<ChatListPage> {
       onLongPress: () {}, //Can add more feature into this if needed
     );
   }
-
 }

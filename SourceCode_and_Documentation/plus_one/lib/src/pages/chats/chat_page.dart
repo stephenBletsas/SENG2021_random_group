@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:plus_one/src/styling/color_palettes.dart';
@@ -22,7 +22,6 @@ final primaryColor = Color(0xff203152);
 final greyColor = Color(0xffaeaeae);
 final greyColor2 = Color(0xffE8E8E8);
 const defaultAvatarBackground = Color(0xffc9e4de);
-
 
 class ChatPage extends StatefulWidget {
   ChatPage(
@@ -159,23 +158,29 @@ class ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:  AppBar(
-        backgroundColor: sixtyPercOrange,
-        title: Row(
-          children: [
-          CircleAvatar(
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(220.0),
-            child: CachedNetworkImage(
-              placeholder: (context, url) => CircularProgressIndicator(),
-              imageUrl: "https://www.pngkey.com/png/full/73-730477_first-name-profile-image-placeholder-png.png",
-              fit: BoxFit.cover,
-            )),
-      ), Text("    "),Text(
-          widget.peerName,
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
-        )])),
+        appBar: AppBar(
+            backgroundColor: sixtyPercOrange,
+            title: Row(children: [
+              CircleAvatar(
+                child: Text("H"),
+                // child: ClipRRect(
+                //   borderRadius: BorderRadius.circular(220.0),
+                //   child: CachedNetworkImage(
+                //     placeholder: (context, url) => CircularProgressIndicator(),
+                //     imageUrl:
+                //         "https://www.pngkey.com/png/full/73-730477_first-name-profile-image-placeholder-png.png",
+                //     fit: BoxFit.cover,
+                //   ),
+              ),
+              Text("    "),
+              Text(
+                widget.peerName,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              )
+            ])),
         body: Container(
             child: WillPopScope(
               child: Stack(
@@ -194,8 +199,6 @@ class ChatPageState extends State<ChatPage> {
             color: Colors.transparent));
   }
 
-  
-
   Widget buildInput() {
     return Container(
       child: Row(
@@ -211,9 +214,8 @@ class ChatPageState extends State<ChatPage> {
                 style: buildRobotoTextStyle(15.0, Colors.black),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Type your message...',
-                  hintStyle: buildRobotoTextStyle(15.0, greyColor)
-                ),
+                    hintText: 'Type your message...',
+                    hintStyle: buildRobotoTextStyle(15.0, greyColor)),
                 focusNode: focusNode,
               ),
             ),
@@ -235,8 +237,7 @@ class ChatPageState extends State<ChatPage> {
         ],
       ),
       height: 50.0,
-      decoration: BoxDecoration(
-          color: Colors.white),
+      decoration: BoxDecoration(color: Colors.white),
     );
   }
 
@@ -254,8 +255,7 @@ class ChatPageState extends State<ChatPage> {
           if (!snapshot.hasData) {
             return Center(
                 child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(seafoamGreen)));
+                    valueColor: AlwaysStoppedAnimation<Color>(seafoamGreen)));
           } else {
             return ListView.builder(
               padding: EdgeInsets.all(10.0),
@@ -293,15 +293,11 @@ class ChatPageState extends State<ChatPage> {
 }
 
 buildServerMessage(String content) {
-  return Row(
-    
-  );
+  return Row();
 }
 
 // Handle tapping other user's avatar
-void navToPeerProfile(BuildContext context, String peerFirebaseId) {
- 
-}
+void navToPeerProfile(BuildContext context, String peerFirebaseId) {}
 
 // Function that determines the chatID of a ChatRoom between 2 users
 // based on their firebaseIDs
